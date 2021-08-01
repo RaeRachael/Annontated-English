@@ -1,6 +1,9 @@
-export const annotations = {
-  digraph: {unicode: "\u033a", valid: "none", type: "none"},
-  silent: { mark: "cross below", unicode: "\u0353", valid: "any", type: "none"},
+import { annotationsType } from "../Types/AnnotedLetter"
+
+
+export const annotations: annotationsType = {
+  digraph: {unicode: "\u200b", valid: "none", type: "none"},
+  silent: { mark: "cross below", unicode: "\u0353", valid: "letter", type: "none"},
   main_stress: { mark: "dash below", unicode: "\u0329", valid: "vowel", type: "vowel"},
   secondary_stress: { mark: "double dash below", unicode: "\u0348", valid: "vowel", type: "vowel"},
   simple_seperator: { mark: "up tack below", unicode: "\u031d", valid: "between", type: "none"},
@@ -61,3 +64,40 @@ export const annotationCode = {
   },
   8203: "digraph"
 }
+
+// export const nonInsertAnnotation = [
+//   "silent",
+//   // "main_stress",   deal with stress later
+//   // "secondary_stress",
+//   "schwa",
+//   "natural",
+//   "plain",
+//   "broad",
+//   "clear",
+//   "central",
+//   "iotted",
+//   "round",
+//   "opaque",
+//   "idiphthong",
+//   "udiphthong",
+//   "w_semiconsonant",
+//   "y_semiconsonant",
+//   "common_change",
+//   "voiced",
+//   "voiceless",
+//   "soft_voiced",
+//   "soft_voiceless",
+//   "hard_voiced",
+//   "hard_voiceless",
+// ]
+
+// export const insertAnnotation = [
+//   "main_stress",
+//   "secondary_stress",
+//   "simple_seperator",
+//   "left_seperator",
+//   "right_seperator",
+//   "both_seperator",
+//   "w_semiconsonant",
+//   "y_semiconsonant",
+// ]

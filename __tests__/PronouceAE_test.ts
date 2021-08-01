@@ -1,4 +1,4 @@
-import { getIPAForAE } from "../src/PronouceAE"
+import { getIPAForAE } from "../src/Interpretor/PronouceAE"
 import { AnnotatedLetter } from "../src/Types/AnnotedLetter"
 
 describe("getIPAForAE", () => {
@@ -10,8 +10,7 @@ describe("getIPAForAE", () => {
         plainText: "n", annotations: [], annotatedString: "", ipa: "", digraph: false, groupType: "undetermined"
       }
     ]
-    getIPAForAE(testWord)
-    expect(1).toEqual(1)
+    expect(getIPAForAE(testWord)).toEqual("ɛn")
   })
 
   test("", () => {
@@ -24,19 +23,17 @@ describe("getIPAForAE", () => {
         plainText: "s", annotations: ["voiced"], annotatedString: "", ipa: "", digraph: false, groupType: "undetermined"
       }
     ]
-    getIPAForAE(testWord)
-    expect(1).toEqual(1)
+    expect(getIPAForAE(testWord)).toEqual("wɒz")
   })
 
   test("", () => {
     let testWord: AnnotatedLetter[] = [
       {
-        plainText: "th", annotations: ["voiced"], annotatedString: "", ipa: "", digraph: false, groupType: "undetermined"
+        plainText: "th", annotations: ["voiced"], annotatedString: "", ipa: "", digraph: true, groupType: "undetermined"
       }, {
         plainText: "e", annotations: ["central"], annotatedString: "", ipa: "", digraph: false, groupType: "undetermined"
       }
     ]
-    getIPAForAE(testWord)
-    expect(1).toEqual(1)
+    expect(getIPAForAE(testWord)).toEqual("ðə")
   })
 })

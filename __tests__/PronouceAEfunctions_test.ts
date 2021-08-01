@@ -1,4 +1,4 @@
-import {addVowelAndConsonantMarkers, indentifyWordSegments, makeVowelDigraphs, removeSilentLetters} from '../src/PronouceAE'
+import {addVowelAndConsonantMarkers, indentifyWordSegments, makeVowelDigraphs, removeSilentLetters} from '../src/Interpretor/PronouceAE'
 import { AnnotatedLetter } from '../src/Types/AnnotedLetter'
 
 describe("removeSilentLetters", () => {

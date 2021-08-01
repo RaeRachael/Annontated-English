@@ -1,7 +1,7 @@
 import { annotationForUnicode } from "../Helpers/IPAHelpers";
 import { makeAnnotatedLetter } from "../Helpers/letterHelpers";
 import { AnnotatedLetter, annotation } from "../Types/AnnotedLetter";
-import { annotationCode, annotations } from "./Annotations";
+import { annotations } from "./Annotations";
 
 export function AnnotatedCodeToAnnotatedText(word: AnnotatedLetter[]): string {
   for (var i = 0; i < word.length; i++) {

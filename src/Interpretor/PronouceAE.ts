@@ -1,10 +1,11 @@
-import { isConsonant, isVowel } from "./Helpers/groupTypeChecker";
-import { getIPAForConsonant, getIPAForVowel } from "./Helpers/IPAHelpers";
-import { isUnAnnotatedConsonant, isUnAnnotatedVowel } from "./Helpers/letterHelpers";
-import { digraphs } from "./Mappings/Digraphs";
-import { AnnotatedLetter } from "./Types/AnnotedLetter";
+import { isConsonant, isVowel } from "../Helpers/groupTypeChecker";
+import { getIPAForConsonant, getIPAForVowel } from "../Helpers/IPAHelpers";
+import { isUnAnnotatedConsonant, isUnAnnotatedVowel } from "../Helpers/letterHelpers";
+import { digraphs } from "../Mappings/Digraphs";
+import { AnnotatedLetter } from "../Types/AnnotedLetter";
 
-export function getIPAForAE(word: AnnotatedLetter[]) {
+export function getIPAForAE(word: AnnotatedLetter[]): string {
+  const ipaStrings: string[] = []
   removeSilentLetters(word)
   const wordSegments = indentifyWordSegments(word)
   wordSegments.forEach(segment => {
@@ -14,17 +15,17 @@ export function getIPAForAE(word: AnnotatedLetter[]) {
     makeConsonantDigraphs(segment)
     // sort out rhotic vowels
     getIPAForLetter(segment)
-
-    let ipaString = segment.map(annotatedLetter => annotatedLetter.ipa).join("")
+    ipaStrings.push(segment.map(annotatedLetter => annotatedLetter.ipa).join(""))
     // postProcess
-    console.log(ipaString, 'seg IPA')
   })
+  return ipaStrings.join("")
 }
 
 export function removeSilentLetters(word: AnnotatedLetter[]): void {
   for (const letter in word) {
+    // console.log(letter, word)
     if (word[letter].annotations.includes( "silent")) {
-      word = word.splice(word.indexOf(word[letter]), 1)
+      word.splice(word.indexOf(word[letter]), 1)
     }
   }
 }

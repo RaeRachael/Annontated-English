@@ -18,11 +18,11 @@ export const vowels = {
     iotted: {
       ipa: "ɪ"
     },
-    rounded: {
+    round: {
       ipa: "ɔː"
     },
     opaque: {
-      ipa: "ɔ"
+      ipa: "ɒ"//"ɔ" (edit made to get 'was' to work)
     },
     idiphthong: {
       ipa: "aɪ"
@@ -50,7 +50,7 @@ export const vowels = {
     iotted: {
       ipa: "ɪ"
     },
-    rounded: {
+    round: {
       ipa: "oʊ"
     },
     opaque: {
@@ -82,7 +82,7 @@ export const vowels = {
     iotted: {
       ipa: "i"
     },
-    rounded: {
+    round: {
     },
     opaque: {
       ipa: "ɔ"
@@ -111,7 +111,7 @@ export const vowels = {
     iotted: {
       ipa: "ɪ"
     },
-    rounded: {
+    round: {
       ipa: "uː"
     },
     opaque: {
@@ -142,7 +142,7 @@ export const vowels = {
     iotted: {
       ipa: "ɪ"
     },
-    rounded: {
+    round: {
       ipa: "oʊ"
     },
     opaque: {
