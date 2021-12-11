@@ -1,302 +1,298 @@
 export const vowels = {
   a: {
     natural: {
-      ipa: "eɪ"
+      ipa: "eɪ",
     },
     plain: {
-      ipa: "æ"
+      ipa: "æ",
     },
     broad: {
-      ipa: "ɑː"
+      ipa: "ɑː",
     },
     clear: {
-      ipa: "ʌ"
+      ipa: "ʌ",
     },
     central: {
-      ipa: "ɛ"
+      ipa: "ɛ",
     },
     iotted: {
-      ipa: "ɪ"
+      ipa: "ɪ",
     },
     round: {
-      ipa: "ɔː"
+      ipa: "ɔː",
     },
     opaque: {
-      ipa: "ɒ"//"ɔ" (edit made to get 'was' to work)
+      ipa: "ɒ", //"ɔ" (edit made to get 'was' to work)
     },
     idiphthong: {
-      ipa: "aɪ"
+      ipa: "aɪ",
     },
     udiphthong: {
-      ipa: "aʊ"
-    }
+      ipa: "aʊ",
+    },
   },
   e: {
     natural: {
-      ipa: "iː"
+      ipa: "iː",
     },
     plain: {
-      ipa: "ɛ"
+      ipa: "ɛ",
     },
     broad: {
-      ipa: "eɪ"
+      ipa: "eɪ",
     },
     clear: {
-      ipa: "æ"
+      ipa: "æ",
     },
     central: {
-      ipa: "ə"
+      ipa: "ə",
     },
     iotted: {
-      ipa: "ɪ"
+      ipa: "ɪ",
     },
     round: {
-      ipa: "oʊ"
+      ipa: "oʊ",
     },
     opaque: {
-      ipa: "ɔ"
+      ipa: "ɔ",
     },
     idiphthong: {
-      ipa: "aɪ"
+      ipa: "aɪ",
     },
     udiphthong: {
-      ipa: "ɔɪ"
-    }
+      ipa: "ɔɪ",
+    },
   },
   i: {
     natural: {
-      ipa: "aɪ"
+      ipa: "aɪ",
     },
     plain: {
-      ipa: "ɪ"
+      ipa: "ɪ",
     },
     broad: {
-      ipa: "iː"
+      ipa: "iː",
     },
     clear: {
-      ipa: "æ"
+      ipa: "æ",
     },
     central: {
-      ipa: "ə"
+      ipa: "ə",
     },
     iotted: {
-      ipa: "i"
+      ipa: "i",
     },
-    round: {
-    },
+    round: {},
     opaque: {
-      ipa: "ɔ"
+      ipa: "ɔ",
     },
-    idiphthong: {
-    },
-    udiphthong: {
-    }
+    idiphthong: {},
+    udiphthong: {},
   },
   o: {
     natural: {
-      ipa: "oʊ"
+      ipa: "oʊ",
     },
     plain: {
-      ipa: "ɑ"
+      ipa: "ɑ",
     },
     broad: {
-      ipa: "ɔː"
+      ipa: "ɔː",
     },
     clear: {
-      ipa: "ʌ"
+      ipa: "ʌ",
     },
     central: {
-      ipa: "ʌ"
+      ipa: "ʌ",
     },
     iotted: {
-      ipa: "ɪ"
+      ipa: "ɪ",
     },
     round: {
-      ipa: "uː"
+      ipa: "uː",
     },
     opaque: {
-      ipa: "ʊ"
+      ipa: "ʊ",
     },
     idiphthong: {
-      ipa: "waɪ"
+      ipa: "waɪ",
     },
     udiphthong: {
-      ipa: "aʊ"
-    }
+      ipa: "aʊ",
+    },
   },
   u: {
     natural: {
-      ipa: "uː"
+      ipa: "uː",
     },
     plain: {
-      ipa: "ʌ"
+      ipa: "ʌ",
     },
     broad: {
-      ipa: "uː"
+      ipa: "uː",
     },
-    clear: {
-    },
+    clear: {},
     central: {
-      ipa: "ɛ"
+      ipa: "ɛ",
     },
     iotted: {
-      ipa: "ɪ"
+      ipa: "ɪ",
     },
     round: {
-      ipa: "oʊ"
+      ipa: "oʊ",
     },
     opaque: {
-      ipa: "ʊ"
+      ipa: "ʊ",
     },
     idiphthong: {
-      ipa: "jə"
+      ipa: "jə",
     },
     udiphthong: {
-      ipa: "jʊ"
-    }
+      ipa: "jʊ",
+    },
   },
   aa: {
     stressed: {
-      ipa: "ɑː"
+      ipa: "ɑː",
     },
     unStressed: {
-      ipa: "ɑː"
-    }
+      ipa: "ɑː",
+    },
   },
   ae: {
     stressed: {
-      ipa: "iː"
+      ipa: "iː",
     },
     unStressed: {
-      ipa: "iː"
-    }
+      ipa: "iː",
+    },
   },
   ee: {
     stressed: {
-      ipa: "iː"
+      ipa: "iː",
     },
     unStressed: {
-      ipa: "iː"
-    }
+      ipa: "iː",
+    },
   },
   ea: {
     stressed: {
-      ipa: "iː"
+      ipa: "iː",
     },
     unStressed: {
-      ipa: "ɪə"
-    }
+      ipa: "ɪə",
+    },
   },
   ai: {
     stressed: {
-      ipa: "eɪ"
+      ipa: "eɪ",
     },
     unStressed: {
-      ipa: "eɪ"
-    }
+      ipa: "eɪ",
+    },
   },
   ay: {
     stressed: {
-      ipa: "eɪ"
+      ipa: "eɪ",
     },
     unStressed: {
-      ipa: "eɪ"
-    }
+      ipa: "eɪ",
+    },
   },
   ei: {
     stressed: {
-      ipa: "eɪ"
+      ipa: "eɪ",
     },
     unStressed: {
-      ipa: "ɪ"
-    }
+      ipa: "ɪ",
+    },
   },
   ey: {
     stressed: {
-      ipa: "eɪ"
+      ipa: "eɪ",
     },
     unStressed: {
-      ipa: "ɪ"
-    }
+      ipa: "ɪ",
+    },
   },
   au: {
     stressed: {
-      ipa: "ɔː"
+      ipa: "ɔː",
     },
     unStressed: {
-      ipa: "ɔː"
-    }
+      ipa: "ɔː",
+    },
   },
   aw: {
     stressed: {
-      ipa: "ɔː"
+      ipa: "ɔː",
     },
     unStressed: {
-      ipa: "ɔː"
-    }
+      ipa: "ɔː",
+    },
   },
   eu: {
     stressed: {
-      ipa: "uː"
+      ipa: "uː",
     },
     unStressed: {
-      ipa: "uː"
-    }
+      ipa: "uː",
+    },
   },
   ew: {
     stressed: {
-      ipa: "uː"
+      ipa: "uː",
     },
     unStressed: {
-      ipa: "uː"
-    }
+      ipa: "uː",
+    },
   },
   oa: {
     stressed: {
-      ipa: "oʊ"
+      ipa: "oʊ",
     },
     unStressed: {
-      ipa: "oʊ"
-    }
+      ipa: "oʊ",
+    },
   },
   ow: {
     stressed: {
-      ipa: "oʊ"
+      ipa: "oʊ",
     },
     unStressed: {
-      ipa: "oʊ"
-    }
+      ipa: "oʊ",
+    },
   },
   ou: {
     stressed: {
-      ipa: "aʊ"
+      ipa: "aʊ",
     },
     unStressed: {
-      ipa: "ə"
-    }
+      ipa: "ə",
+    },
   },
   oi: {
     stressed: {
-      ipa: "ɔɪ"
+      ipa: "ɔɪ",
     },
     unStressed: {
-      ipa: "ɔɪ"
-    }
+      ipa: "ɔɪ",
+    },
   },
   oy: {
     stressed: {
-      ipa: "ɔɪ"
+      ipa: "ɔɪ",
     },
     unStressed: {
-      ipa: "ɔɪ"
-    }
+      ipa: "ɔɪ",
+    },
   },
   oo: {
     stressed: {
-      ipa: "uː"
+      ipa: "uː",
     },
     unStressed: {
-      ipa: "uː"
-    }
-  }
-}
+      ipa: "uː",
+    },
+  },
+};
