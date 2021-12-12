@@ -11,13 +11,18 @@ function getIPAForVowel(letter) {
     letter.ipa = "j";
     return "";
   }
+  if (letter.annotations.includes("schwa")) {
+    letter.ipa = "ə";
+    return;
+  }
+
   let ipaAnnotation = letter.annotations.filter(
     (annotation) => annotations[annotation].ipa
   )[0];
   ipaAnnotation = ipaAnnotation ? ipaAnnotation : "stressed";
 
   if (!vowels[letter.plainText][ipaAnnotation]?.ipa) {
-    // console.log("no ipa found for:", letter.plainText, ipaAnnotation)
+    // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
     letter.ipa = "NOIPA";
     return "";
   }
@@ -39,7 +44,7 @@ function getIPAForConsonant(letter) {
   ipaAnnotation = ipaAnnotation ? ipaAnnotation : "";
 
   if (!consonants[letter.plainText][ipaAnnotation]) {
-    // console.log("no ipa found for:", letter.plainText, ipaAnnotation)
+    // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
     letter.ipa = "NOIPA";
     return "";
   }

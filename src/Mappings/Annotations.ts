@@ -38,12 +38,6 @@ export const annotations: annotationsType = {
     valid: "between",
     type: "none",
   },
-  schwa: {
-    mark: "hook above",
-    unicode: "\u0309",
-    valid: "consonant",
-    type: "none",
-  },
   natural: {
     mark: "tilde above",
     unicode: "\u0303",
@@ -116,6 +110,12 @@ export const annotations: annotationsType = {
     valid: "vowel",
     type: "vowel",
     ipa: true,
+  },
+  schwa: {
+    mark: "hook above",
+    unicode: "\u0309", //might need to update given how similar it looks to 'plain' annotation
+    valid: "letter",
+    type: "none",
   },
   w_semiconsonant: {
     mark: "w below",

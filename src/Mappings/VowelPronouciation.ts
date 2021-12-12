@@ -151,6 +151,28 @@ export const vowels = {
       ipa: "jʊ",
     },
   },
+  y: {
+    natural: {
+      ipa: "aɪ",
+    },
+    plain: {
+      ipa: "ɪ",
+    },
+    broad: {
+      ipa: "iː",
+    },
+  },
+  w: {
+    natural: {
+      ipa: "uː",
+    },
+    plain: {
+      ipa: "ʌ",
+    },
+    broad: {
+      ipa: "uː",
+    },
+  },
   aa: {
     stressed: {
       ipa: "ɑː",

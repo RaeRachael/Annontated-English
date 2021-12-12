@@ -1,21 +1,64 @@
-import { AnnotatedLetter} from "../Types/AnnotedLetter";
+import { AnnotatedLetter } from "../Types/AnnotedLetter";
 import { annotations } from "../Mappings/Annotations";
 
-const standardVowels = ['a', 'e', 'i', 'o', 'u']
+const standardVowels = ["a", "e", "i", "o", "u"];
 
 // using 'w' and 'y' as consonants unless marked by annotations atm!!!
 export function isVowel(segment: AnnotatedLetter[], i: number): boolean {
-  if (standardVowels.includes(segment[i].plainText) && 
-  (!segment[i].annotations.some(annotation => annotations[annotation].type === "consonant"))) {
-    return true
+  if (
+    standardVowels.includes(segment[i].plainText) &&
+    !segment[i].annotations.some(
+      (annotation) => annotations[annotation].type === "consonant"
+    )
+  ) {
+    return true;
   }
-  if (segment[i].annotations.some(annotation => annotations[annotation].type === "vowel")) {
-    return true
+  // if (
+  //   segment[i].annotations.some(
+  //     (annotation) => annotations[annotation].type === "vowel"
+  //   )
+  // ) {
+  //   return true;
+  // }
+  if (segment[i].plainText === "y" && yShouldBeVowel(i, segment)) {
+    return true;
   }
-  return false
+  if (segment[i].plainText === "w" && wShouldBeVowel(i, segment)) {
+    // console.log("w - vowel", segment, i);
+    return true;
+  }
+  // if (
+  //   segment[i].plainText === "w" &&
+  //   !standardVowels.includes(segment[i + 1].plainText)
+  // ) {
+  //   return true;
+  // }
+  return false;
+}
+
+function yShouldBeVowel(position: number, segment: AnnotatedLetter[]): boolean {
+  if (position === segment.length - 1) {
+    return true;
+  }
+  if (position !== segment.length - 1 && !isVowel(segment, position + 1)) {
+    return true;
+  }
+  if (position !== 0 && !isVowel(segment, position - 1)) {
+    return true;
+  }
+  return false;
+}
+
+function wShouldBeVowel(position: number, segment: AnnotatedLetter[]): boolean {
+  if (position === segment.length - 1) {
+    return true;
+  }
+  if (position !== segment.length - 1 && !isVowel(segment, position + 1)) {
+    return true;
+  }
+  return false;
 }
 
 export function isConsonant(segment: AnnotatedLetter[], i: number): boolean {
-
-  return false
+  return false;
 }
