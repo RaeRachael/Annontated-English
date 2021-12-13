@@ -7,8 +7,9 @@ import {
 import { digraphs } from "../Mappings/Digraphs";
 import { AnnotatedLetter } from "../Types/AnnotedLetter";
 
-export function getIPAForAE(word: AnnotatedLetter[]): string {
+export function getIPAForAE(wordIn: AnnotatedLetter[]): string {
   const ipaStrings: string[] = [];
+  let word: AnnotatedLetter[] = JSON.parse(JSON.stringify(wordIn));
   removeSilentLetters(word);
   const wordSegments = indentifyWordSegments(word);
   wordSegments.forEach((segment) => {
@@ -27,10 +28,12 @@ export function getIPAForAE(word: AnnotatedLetter[]): string {
 }
 
 export function removeSilentLetters(word: AnnotatedLetter[]): void {
-  for (const letter in word) {
+  for (let i = 0; i < word.length; i++) {
+    // for (const letter in word) {
     // console.log(letter, word)
-    if (word[letter].annotations.includes("silent")) {
-      word.splice(word.indexOf(word[letter]), 1);
+    if (word[i].annotations.includes("silent")) {
+      word.splice(i, 1);
+      i--;
     }
   }
 }
@@ -69,9 +72,9 @@ export function indentifyWordSegments(
 export function addVowelAndConsonantMarkers(segment: AnnotatedLetter[]): void {
   for (var i = 0; i < segment.length; i++) {
     if (isVowel(segment, i)) {
-      if (segment[i].plainText === "w") {
-        console.log(segment, "w is vowel....?");
-      }
+      // if (segment[i].plainText === "w") {
+      //   console.log(segment, "w is vowel....?");
+      // }
       segment[i].groupType = "vowel";
     } else {
       //if (isConsonant(segment, i)) {
@@ -88,6 +91,7 @@ export function makeVowelDigraphs(segment: AnnotatedLetter[]): void {
       if (
         digraphs.vowel.includes(segment[i - 1].plainText + segment[i].plainText)
       ) {
+        console.log("iehoiuehfo");
         segment[i - 1].plainText += segment[i].plainText;
         segment[i - 1].digraph = true;
         segment.splice(i, 1);
@@ -120,6 +124,9 @@ export function getIPAForLetter(segment: AnnotatedLetter[]): void {
   for (var i = 0; i < segment.length; i++) {
     if (segment[i].groupType === "vowel") {
       getIPAForVowel(segment[i]);
+      // if (segment[i].plainText === "e") {
+      //   console.log(segment[i], "e - gre", getIPAForVowel(segment[i]));
+      // }
     } else if (segment[i].groupType === "consonant") {
       getIPAForConsonant(segment[i]);
     } else {

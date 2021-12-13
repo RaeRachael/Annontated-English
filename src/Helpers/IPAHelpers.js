@@ -3,6 +3,10 @@ const { consonants } = require("../Mappings/ConsonantPronounciation");
 const { vowels } = require("../Mappings/VowelPronouciation");
 
 function getIPAForVowel(letter) {
+  if (letter.annotations.includes("silent")) {
+    letter.ipa = "";
+    return;
+  }
   if (letter.annotations.includes("w_semiconsonant")) {
     letter.ipa = "w";
     return "";
@@ -21,15 +25,28 @@ function getIPAForVowel(letter) {
   )[0];
   ipaAnnotation = ipaAnnotation ? ipaAnnotation : "stressed";
 
+  if (!vowels[letter.plainText]) {
+    // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
+    letter.ipa = "NOIPA-NOTvalidVowel";
+    return "";
+  }
+
   if (!vowels[letter.plainText][ipaAnnotation]?.ipa) {
     // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
     letter.ipa = "NOIPA";
     return "";
   }
   letter.ipa = vowels[letter.plainText][ipaAnnotation]?.ipa;
+  // if (ipaAnnotation === "natural") {
+  //   console.log(letter);
+  // }
 }
 
 function getIPAForConsonant(letter) {
+  if (letter.annotations.includes("silent")) {
+    letter.ipa = "";
+    return;
+  }
   if (letter.annotations.includes("w_semiconsonant")) {
     letter.ipa = "w";
     return "";
@@ -43,6 +60,12 @@ function getIPAForConsonant(letter) {
   )[0];
   ipaAnnotation = ipaAnnotation ? ipaAnnotation : "";
 
+  if (!consonants[letter.plainText]) {
+    // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
+    letter.ipa = "NOIPA-NOTvalidConsonant";
+    return "";
+  }
+
   if (!consonants[letter.plainText][ipaAnnotation]) {
     // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
     letter.ipa = "NOIPA";
@@ -54,6 +77,10 @@ function getIPAForConsonant(letter) {
   if (letter.annotations.includes("schwa")) {
     letter.ipa = "ə" + letter.ipa;
   }
+  // if (letter.plainText === "g") {
+  //   //(ipaAnnotation === "natural") {
+  //   console.log(letter.ipa, ipaAnnotation);
+  // }
 }
 
 function annotationForUnicode(number) {

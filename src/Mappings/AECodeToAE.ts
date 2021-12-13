@@ -10,7 +10,7 @@ export function AnnotatedCodeToAnnotatedText(word: AnnotatedLetter[]): string {
       // word[i].groupType === "consonant" &&
       word[i].annotations.includes("w_semiconsonant")
     ) {
-      console.log("remove unneded w_semiconst", i, word);
+      // console.log("remove unneded w_semiconst", i, word);
       word[i].annotations = [];
     }
     if (
@@ -22,6 +22,7 @@ export function AnnotatedCodeToAnnotatedText(word: AnnotatedLetter[]): string {
     }
     getAnnotatedText(word[i]);
   }
+  // console.log(word);
   return word.map((letter) => letter.annotatedString).join("");
 }
 
@@ -33,8 +34,7 @@ function getAnnotatedText(letter: AnnotatedLetter): void {
     letter.annotatedString = letter.plainText + marks;
   }
   if (letter.digraph) {
-    letter.annotatedString =
-      letter.plainText[0] + "\u200b" + marks + letter.plainText[1];
+    letter.annotatedString = letter.plainText[0] + marks + letter.plainText[1];
   }
 }
 

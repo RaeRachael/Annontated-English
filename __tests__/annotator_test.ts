@@ -3,6 +3,47 @@ import { annotate, checker, mutateLetter } from "../src/Annotator/annotator";
 import { AnnotatedLetter, annotation } from "../src/Types/AnnotedLetter";
 
 describe("mutate - adds annotation to specific AE letter", () => {
+  test("split digraph", () => {
+    let testWordAE: AnnotatedLetter[] = [
+      {
+        annotatedString: "pt",
+        annotations: [],
+        digraph: true,
+        groupType: "consonant",
+        ipa: "",
+        plainText: "pt",
+      },
+    ];
+    let expectedAE: AnnotatedLetter[] = [
+      {
+        annotatedString: "",
+        annotations: [],
+        digraph: false,
+        groupType: "consonant",
+        ipa: "",
+        plainText: "p",
+      },
+      {
+        annotatedString: "",
+        annotations: ["simple_seperator"],
+        digraph: false,
+        groupType: "undetermined",
+        ipa: "",
+        plainText: "",
+      },
+      {
+        annotatedString: "",
+        annotations: [],
+        digraph: false,
+        groupType: "consonant",
+        ipa: "",
+        plainText: "t",
+      },
+    ];
+    // mutateLetter(testWordAE, 0, "pt");
+    expect(mutateLetter(testWordAE, 0, "pt")).toEqual(expectedAE);
+  });
+
   test("a into annoted 'a's", () => {
     let testCases: { annotation: annotation; ipa: string }[] = [
       { annotation: "natural", ipa: "eɪ" },
@@ -31,8 +72,8 @@ describe("mutate - adds annotation to specific AE letter", () => {
           plainText: "a",
         },
       ];
-      mutateLetter(testWordAE, 0, testCase.ipa);
-      expect(testWordAE).toEqual(expectedAE);
+      // mutateLetter(testWordAE, 0, testCase.ipa);
+      expect(mutateLetter(testWordAE, 0, testCase.ipa)).toEqual(expectedAE);
     });
   });
 
@@ -63,8 +104,8 @@ describe("mutate - adds annotation to specific AE letter", () => {
           plainText: "e",
         },
       ];
-      mutateLetter(testWordAE, 0, testCase.ipa);
-      expect(testWordAE).toEqual(expectedAE);
+      // mutateLetter(testWordAE, 0, testCase.ipa)
+      expect(mutateLetter(testWordAE, 0, testCase.ipa)).toEqual(expectedAE);
     });
   });
 
@@ -89,8 +130,8 @@ describe("mutate - adds annotation to specific AE letter", () => {
         plainText: "f",
       },
     ];
-    mutateLetter(testWordAE, 0, "v");
-    expect(testWordAE).toEqual(expectedAE);
+    // mutateLetter(testWordAE, 0, "v");
+    expect(mutateLetter(testWordAE, 0, "v")).toEqual(expectedAE);
   });
 
   test("s into annoted 's's", () => {
@@ -121,8 +162,8 @@ describe("mutate - adds annotation to specific AE letter", () => {
           plainText: "s",
         },
       ];
-      mutateLetter(testWordAE, 0, testCase.ipa);
-      expect(testWordAE).toEqual(expectedAE);
+      // mutateLetter(testWordAE, 0, testCase.ipa);
+      expect(mutateLetter(testWordAE, 0, testCase.ipa)).toEqual(expectedAE);
     });
   });
 });
@@ -172,7 +213,14 @@ describe("annotate - adds annotiona to get IPA", () => {
 
   test("pterodactyl", () => {
     let testWord: string = "pterodactyl";
-    let expectedAE: string = "pte̓rỏda̓ctỹl";
+    let expectedAE: string = "p\u200bte̓rỏda̓ctỹl";
+
+    expect(annotate(testWord)).toEqual(expectedAE);
+  });
+
+  test("helicopter", () => {
+    let testWord: string = "helicopter";
+    let expectedAE: string = "he̓li̓co̓p\u200b\u031dtër͓";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });

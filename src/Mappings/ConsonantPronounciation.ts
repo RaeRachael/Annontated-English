@@ -4,143 +4,143 @@ export const consonants = {
   },
   c: {
     "": "k",
-    common: "k",
+    common_change: "k",
     voiceless: "s",
     soft_voiceless: "ʃ",
-    hard_voiceless: "ʧ"
+    hard_voiceless: "ʧ",
   },
   d: {
     "": "d",
     voiceless: "t",
-    hard_voiced: "ʤ"
+    hard_voiced: "dʒ", //"ʤ",
   },
   f: {
     "": "f",
-    voiceless: "v"
+    voiceless: "v",
   },
   g: {
     "": "g",
-    common: "g",
+    common_change: "g",
     soft_voiced: "ʒ",
-    hard_voiced: "ʤ",
+    hard_voiced: "dʒ", //"ʤ",
     voiceless: "k",
   },
   h: {
     "": "h",
-    common: "x",
-    voiceless: "h"
+    common_change: "x",
+    voiceless: "h",
   },
   j: {
     "": "ʤ",
-    common: "h",
+    common_change: "h",
     soft_voiced: "ʒ",
-    hard_voiced: "ʤ"
+    hard_voiced: "dʒ", //"ʤ",
   },
   k: {
-    "": "k"
+    "": "k",
   },
   l: {
     "": "l",
-    common: "ɹ",
-    voiceless: "ɹ"
+    common_change: "ɹ",
+    voiceless: "ɹ",
   },
   m: {
-    "": "m"
+    "": "m",
   },
   n: {
     "": "n",
-    common: "ŋ",
-    voiceless: "n"
+    common_change: "ŋ",
+    voiceless: "n",
   },
   p: {
-    "": "p"
+    "": "p",
   },
   q: {
-    "": "k"
+    "": "k",
   },
   r: {
     "": "ɹ",
-    common: "ɹ"
+    common_change: "ɹ",
   },
   s: {
     "": "s",
     voiced: "z",
     soft_voiced: "ʒ",
     voiceless: "s",
-    soft_voiceless: "ʃ"
+    soft_voiceless: "ʃ",
   },
   t: {
     "": "t",
-    common: "ɾ",
+    common_change: "ɾ",
     soft_voiced: "ʒ",
     soft_voiceless: "ʃ",
-    hard_voiceless: "ʧ"
+    hard_voiceless: "ʧ",
   },
   v: {
     "": "v",
-    voiceless: "f"
+    voiceless: "f",
   },
   w: {
     "": "w",
-    common: "w", // "ʍ" accent dependant
-    voiced: "v"
+    common_change: "w", // "ʍ" accent dependant
+    voiced: "v",
   },
   x: {
     "": "ks",
-    common: "z",
+    common_change: "z",
     voiced: "gz",
     voiceless: "ks",
-    soft_voiceless: "kʃ"
+    soft_voiceless: "kʃ",
   },
   y: {
-    "": "j"
+    "": "j",
   },
   z: {
     "": "z",
-    common: "ts",
+    common_change: "ts",
     soft_voiced: "ʒ",
-    hard_voiced: "ʤ",
-    voiceless: "s"
+    hard_voiced: "dʒ", //"ʤ",
+    voiceless: "s",
   },
   kn: {
-    "": "n"
+    "": "n",
   },
   pn: {
-    "": "n"
+    "": "n",
   },
   gn: {
-    "": "n"
+    "": "n",
   },
   cn: {
-    "": "n"
+    "": "n",
   },
   ph: {
-    "": "f"
+    "": "f",
   },
   ch: {
-    "": "tʃ"
+    "": "tʃ",
   },
   sh: {
-    "": "ʃ"
+    "": "ʃ",
   },
   ps: {
-    "": "s"
+    "": "s",
   },
   rh: {
-    "": "ɹ"
+    "": "ɹ",
   },
   pt: {
-    "": "t"
+    "": "t",
   },
   th: {
     "": "ð",
     voiced: "ð",
-    voiceless: "θ"
+    voiceless: "θ",
   },
   gg: {
-    "": "g"
+    "": "g",
   },
   ss: {
-    "": "s"
-  }
-}
+    "": "s",
+  },
+};

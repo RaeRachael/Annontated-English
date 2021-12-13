@@ -16,7 +16,7 @@ export const annotations: annotationsType = {
   },
   simple_seperator: {
     mark: "up tack below",
-    unicode: "\u031d",
+    unicode: "\u200b\u031d",
     valid: "between",
     type: "none",
   },

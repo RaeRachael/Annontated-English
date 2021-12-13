@@ -74,7 +74,7 @@ export const vowels = {
       ipa: "iː",
     },
     clear: {
-      ipa: "æ",
+      ipa: "ɐ", //"æ",
     },
     central: {
       ipa: "ə",
@@ -91,10 +91,10 @@ export const vowels = {
   },
   o: {
     natural: {
-      ipa: "oʊ",
+      ipa: "ə‍ʊ", //"oʊ",
     },
     plain: {
-      ipa: "ɑ",
+      ipa: "ɒ", //"ɑ",
     },
     broad: {
       ipa: "ɔː",
@@ -156,7 +156,7 @@ export const vowels = {
       ipa: "aɪ",
     },
     plain: {
-      ipa: "ɪ",
+      ipa: "i", //"ɪ", for palyground - very and pretty
     },
     broad: {
       ipa: "iː",
