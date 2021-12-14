@@ -185,7 +185,7 @@ describe("annotate - adds annotiona to get IPA", () => {
 
   test("the", () => {
     let testWord: string = "the";
-    let expectedAE: string = "t\u200bhë̩";
+    let expectedAE: string = "t\u200bhẻ̩";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
@@ -206,7 +206,7 @@ describe("annotate - adds annotiona to get IPA", () => {
 
   test("invasion", () => {
     let testWord: string = "invasion";
-    let expectedAE: string = "i̓nvã̩s̺ïo͓n";
+    let expectedAE: string = "i̓nvã̩s̺ỉo͓n";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
@@ -220,7 +220,7 @@ describe("annotate - adds annotiona to get IPA", () => {
 
   test("helicopter", () => {
     let testWord: string = "helicopter";
-    let expectedAE: string = "he̩̓li̓co͈̓p​̝tër͓";
+    let expectedAE: string = "he̩̓li̓co͈̓p​̝tẻr͓";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
@@ -235,6 +235,34 @@ describe("annotate - adds annotiona to get IPA", () => {
   test("awry", () => {
     let testWord: string = "awry";
     let expectedAE: string = "ảw͓rỹ̩";
+
+    expect(annotate(testWord)).toEqual(expectedAE);
+  });
+
+  test("cute", () => {
+    let testWord: string = "cute";
+    let expectedAE: string = "c​̼ũ̩te͓";
+
+    expect(annotate(testWord)).toEqual(expectedAE);
+  });
+
+  test("penguin", () => {
+    let testWord: string = "penguin";
+    let expectedAE: string = "pe̩̓n̥gu̫i̓n";
+
+    expect(annotate(testWord)).toEqual(expectedAE);
+  });
+
+  test("one", () => {
+    let testWord: string = "one";
+    let expectedAE: string = "​̫o̩̓ne͓";
+
+    expect(annotate(testWord)).toEqual(expectedAE);
+  });
+
+  test("onion", () => {
+    let testWord: string = "onion";
+    let expectedAE: string = "ô̩ni̼ỏn";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
@@ -253,7 +281,7 @@ describe("checker - checks AE against ipa dictionary", () => {
       },
       {
         plainText: "e",
-        annotations: ["central"],
+        annotations: ["schwa"],
         annotatedString: "",
         ipa: "ə",
         digraph: false,

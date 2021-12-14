@@ -115,7 +115,7 @@ function mutateAsNeeded(
       ];
       lettersAE = mutatedLettersAE;
     }
-    // console.log(lettersAE, i, "mutation stage");
+    console.log(lettersAE, i, "mutation stage");
     if (i === lettersAE.length - 1) {
       console.log("finished mutation");
       return lettersAE;
@@ -186,6 +186,17 @@ export function mutateLetter(
 
         if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
           // console.log("good mutation", name, ipaAESection, targetIPA);
+          if (
+            index !== lettersAE.length - 1 &&
+            ["y_semiconsonant", "w_semiconsonant"].includes(name) &&
+            lettersAE[index + 1].groupType === "consonant"
+          ) {
+            // console.log("added ", name, " as new letter at", index, lettersAE);
+            return [
+              makeAnnotatedLetter("\u200b", [name], false, "consonant"),
+              lettersAE[index],
+            ];
+          }
           lettersAE[index].annotations = testAE[index].annotations;
           return [lettersAE[index]];
         }
@@ -199,14 +210,14 @@ export function mutateLetter(
         // console.log(testAE[index].annotations, ipaAESection, targetIPA);
 
         if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
-          console.log(
-            "good mutation",
-            "main_stress",
-            name,
-            ipaAESection,
-            targetIPA,
-            testAE[index].annotations
-          );
+          // console.log(
+          //   "good mutation",
+          //   "main_stress",
+          //   name,
+          //   ipaAESection,
+          //   targetIPA,
+          //   testAE[index].annotations
+          // );
           lettersAE[index].annotations = testAE[index].annotations;
           return [lettersAE[index]];
         }
@@ -229,6 +240,17 @@ export function mutateLetter(
             targetIPA,
             testAE[index].annotations
           );
+          if (name === "y_semiconsonant") {
+            return [
+              makeAnnotatedLetter(
+                "\u200b",
+                ["y_semiconsonant"],
+                false,
+                "consonant"
+              ),
+              lettersAE[index],
+            ];
+          }
           lettersAE[index].annotations = testAE[index].annotations;
           return [lettersAE[index]];
         }
@@ -251,6 +273,17 @@ export function mutateLetter(
 
         if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
           // console.log("good mutation", name, ipaAESection, targetIPA);
+          if (name === "y_semiconsonant") {
+            return [
+              makeAnnotatedLetter(
+                "\u200b",
+                ["y_semiconsonant"],
+                false,
+                "consonant"
+              ),
+              lettersAE[index],
+            ];
+          }
           lettersAE[index].annotations = testAE[index].annotations;
           return [lettersAE[index]];
         }
