@@ -31,7 +31,7 @@ export const consonants = {
     voiceless: "h",
   },
   j: {
-    "": "ʤ",
+    "": "dʒ", //"ʤ",
     common_change: "h",
     soft_voiced: "ʒ",
     hard_voiced: "dʒ", //"ʤ",

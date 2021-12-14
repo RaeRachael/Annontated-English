@@ -1,33 +1,43 @@
 export const vowels = {
   a: {
     natural: {
+      //"ã"
       ipa: "eɪ",
     },
     plain: {
+      //"a̓"
       ipa: "æ",
     },
     broad: {
+      //"ā"
       ipa: "ɑː",
     },
     clear: {
+      //"â"
       ipa: "ʌ",
     },
     central: {
+      //"ä"
       ipa: "ɛ",
     },
     iotted: {
+      //"ȧ"
       ipa: "ɪ",
     },
     round: {
+      //"å"
       ipa: "ɔː",
     },
     opaque: {
+      //"ǎ"
       ipa: "ɒ", //"ɔ" (edit made to get 'was' to work)
     },
     idiphthong: {
+      // "à"
       ipa: "aɪ",
     },
     udiphthong: {
+      // "á"
       ipa: "aʊ",
     },
   },
@@ -45,10 +55,10 @@ export const vowels = {
       ipa: "æ",
     },
     central: {
-      ipa: "ə",
+      ipa: "ɪ", //"ə", // could be reused maybe shifted iotted here - with 'i' in iotted
     },
     iotted: {
-      ipa: "ɪ",
+      ipa: "i", //"ɪ",
     },
     round: {
       ipa: "oʊ",
@@ -77,7 +87,7 @@ export const vowels = {
       ipa: "ɐ", //"æ",
     },
     central: {
-      ipa: "ə",
+      ipa: "æ", //"ə", // could be reused - allowing for "æ"
     },
     iotted: {
       ipa: "i",
@@ -157,6 +167,9 @@ export const vowels = {
     },
     plain: {
       ipa: "i", //"ɪ", for palyground - very and pretty
+    },
+    iotted: {
+      ipa: "ɪ", //why not?
     },
     broad: {
       ipa: "iː",
