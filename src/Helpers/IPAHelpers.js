@@ -6,40 +6,41 @@ function getIPAForVowel(letter) {
   if (letter.annotations.includes("silent")) {
     letter.ipa = "";
     return;
-  }
-  if (letter.annotations.includes("w_semiconsonant")) {
+  } else if (letter.annotations.includes("w_semiconsonant")) {
     letter.ipa = "w";
     return "";
-  }
-  if (letter.annotations.includes("y_semiconsonant")) {
+  } else if (letter.annotations.includes("y_semiconsonant")) {
     letter.ipa = "j";
     return "";
-  }
-  if (letter.annotations.includes("schwa")) {
+  } else if (letter.annotations.includes("schwa")) {
     letter.ipa = "ə";
-    return;
+    // return;
+  } else {
+    let ipaAnnotation = letter.annotations.filter(
+      (annotation) => annotations[annotation].ipa
+    )[0];
+    ipaAnnotation = ipaAnnotation ? ipaAnnotation : "stressed";
+
+    if (!vowels[letter.plainText]) {
+      // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
+      letter.ipa = "NOIPA-NOTvalidVowel";
+      return "";
+    }
+
+    if (!vowels[letter.plainText][ipaAnnotation]?.ipa) {
+      // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
+      letter.ipa = "NOIPA";
+      return "";
+    }
+    letter.ipa = vowels[letter.plainText][ipaAnnotation]?.ipa;
+  }
+  if (letter.annotations.includes("main_stress")) {
+    letter.ipa = "M" + letter.ipa;
   }
 
-  let ipaAnnotation = letter.annotations.filter(
-    (annotation) => annotations[annotation].ipa
-  )[0];
-  ipaAnnotation = ipaAnnotation ? ipaAnnotation : "stressed";
-
-  if (!vowels[letter.plainText]) {
-    // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
-    letter.ipa = "NOIPA-NOTvalidVowel";
-    return "";
+  if (letter.annotations.includes("secondary_stress")) {
+    letter.ipa = "S" + letter.ipa;
   }
-
-  if (!vowels[letter.plainText][ipaAnnotation]?.ipa) {
-    // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
-    letter.ipa = "NOIPA";
-    return "";
-  }
-  letter.ipa = vowels[letter.plainText][ipaAnnotation]?.ipa;
-  // if (ipaAnnotation === "natural") {
-  //   console.log(letter);
-  // }
 }
 
 function getIPAForConsonant(letter) {

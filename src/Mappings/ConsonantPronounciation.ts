@@ -137,6 +137,10 @@ export const consonants = {
     voiced: "ð",
     voiceless: "θ",
   },
+  gh: {
+    common_change: "f",
+    voiceless: "p",
+  },
   gg: {
     "": "g",
   },

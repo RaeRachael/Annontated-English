@@ -89,4 +89,34 @@ describe("getIPAForAE", () => {
     ];
     expect(getIPAForAE(testWord)).toEqual("ðə");
   });
+
+  describe("stress on vowels", () => {
+    test("main stress", () => {
+      let testWord: AnnotatedLetter[] = [
+        {
+          plainText: "a",
+          annotations: ["main_stress", "central"],
+          annotatedString: "",
+          ipa: "",
+          digraph: false,
+          groupType: "undetermined",
+        },
+      ];
+      expect(getIPAForAE(testWord)).toEqual("Mɛ");
+    });
+
+    test("secondary stress", () => {
+      let testWord: AnnotatedLetter[] = [
+        {
+          plainText: "a",
+          annotations: ["secondary_stress", "central"],
+          annotatedString: "",
+          ipa: "",
+          digraph: false,
+          groupType: "undetermined",
+        },
+      ];
+      expect(getIPAForAE(testWord)).toEqual("Sɛ");
+    });
+  });
 });

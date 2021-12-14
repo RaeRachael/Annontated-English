@@ -11,6 +11,7 @@ export function getIPAForAE(wordIn: AnnotatedLetter[]): string {
   const ipaStrings: string[] = [];
   let word: AnnotatedLetter[] = JSON.parse(JSON.stringify(wordIn));
   removeSilentLetters(word);
+  // console.log(word, wordIn);
   const wordSegments = indentifyWordSegments(word);
   wordSegments.forEach((segment) => {
     // parseCriticalDigraphs(segment) - TO ADD WHEN WANTING FULL RULES IN PLACE
@@ -91,7 +92,6 @@ export function makeVowelDigraphs(segment: AnnotatedLetter[]): void {
       if (
         digraphs.vowel.includes(segment[i - 1].plainText + segment[i].plainText)
       ) {
-        console.log("iehoiuehfo");
         segment[i - 1].plainText += segment[i].plainText;
         segment[i - 1].digraph = true;
         segment.splice(i, 1);

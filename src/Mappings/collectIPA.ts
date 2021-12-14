@@ -7,7 +7,7 @@ export function getIPAForText(word: string): string {
   if (!ipa) return "NOT FOUND";
   return ipa
     .substring(1, ipa.length - 1)
-    .replace("ˈ", "")
-    .replace("ˌ", "")
+    .replace("ˈ", "M")
+    .replace("ˌ", "S")
     .replace("\u200b", "");
 }

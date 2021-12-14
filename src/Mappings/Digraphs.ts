@@ -1,7 +1,5 @@
 export const digraphs = {
-  critical: [
-
-  ],
+  critical: [],
   vowel: [
     "aa",
     "ae",
@@ -20,22 +18,23 @@ export const digraphs = {
     "oy",
     "oo",
     "ou",
-    "ow"
+    "ow",
   ],
   // ORDER MATTERS FOR CONSONANTS
-  consonant: [ 
+  consonant: [
     "kn",
     "pn",
     "gn",
-    'cn',
-    'ph',
-    'ch',
-    'sh',
-    'ps',
-    'rh',
-    'pt',
-    'th',
-    'gg',
-    'ss'
-  ]
-}
+    "cn",
+    "ph",
+    "ch",
+    "sh",
+    "ps",
+    "rh",
+    "pt",
+    "th",
+    "gh",
+    "gg",
+    "ss",
+  ],
+};

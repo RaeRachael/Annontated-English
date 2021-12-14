@@ -171,56 +171,70 @@ describe("mutate - adds annotation to specific AE letter", () => {
 describe("annotate - adds annotiona to get IPA", () => {
   test("ant", () => {
     let testWord: string = "ant";
-    let expectedAE: string = "a̓nt";
+    let expectedAE: string = "a̩̓nt";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
 
   test("be", () => {
     let testWord: string = "be";
-    let expectedAE: string = "bẽ";
+    let expectedAE: string = "bẽ̩";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
 
   test("the", () => {
     let testWord: string = "the";
-    let expectedAE: string = "t\u200bhë";
+    let expectedAE: string = "t\u200bhë̩";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
 
   test("was", () => {
     let testWord: string = "was";
-    let expectedAE: string = "wǎs̬";
+    let expectedAE: string = "wǎ̩s̬";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
 
   test("twelve", () => {
     let testWord: string = "twelve";
-    let expectedAE: string = "twe̓lve͓";
+    let expectedAE: string = "twe̩̓lve͓";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
 
   test("invasion", () => {
     let testWord: string = "invasion";
-    let expectedAE: string = "i̓nvãs̺ïo͓n";
+    let expectedAE: string = "i̓nvã̩s̺ïo͓n";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
 
   test("pterodactyl", () => {
     let testWord: string = "pterodactyl";
-    let expectedAE: string = "p\u200bte̓rỏda̓ctỹl";
+    let expectedAE: string = "p\u200bte̩̓rỏda͈̓ctỹl";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
 
   test("helicopter", () => {
     let testWord: string = "helicopter";
-    let expectedAE: string = "he̓li̓co̓p\u200b\u031dtër͓";
+    let expectedAE: string = "he̩̓li̓co͈̓p​̝tër͓";
+
+    expect(annotate(testWord)).toEqual(expectedAE);
+  });
+
+  test("draught", () => {
+    let testWord: string = "draught";
+    let expectedAE: string = "drā̩u͓g​̥ht";
+
+    expect(annotate(testWord)).toEqual(expectedAE);
+  });
+
+  test("awry", () => {
+    let testWord: string = "awry";
+    let expectedAE: string = "ảw͓rỹ̩";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
