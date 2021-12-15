@@ -5,6 +5,9 @@ const standardVowels = ["a", "e", "i", "o", "u"];
 
 // using 'w' and 'y' as consonants unless marked by annotations atm!!!
 export function isVowel(segment: AnnotatedLetter[], i: number): boolean {
+  if (segment[i].groupType === "vowel") {
+    return true;
+  }
   if (
     standardVowels.includes(segment[i].plainText) &&
     !segment[i].annotations.some(
@@ -37,6 +40,9 @@ export function isVowel(segment: AnnotatedLetter[], i: number): boolean {
 }
 
 function yShouldBeVowel(position: number, segment: AnnotatedLetter[]): boolean {
+  if (position !== 0 && isVowel(segment, position - 1)) {
+    return false;
+  } // remove ^ once digraphs are properly treated
   if (position === segment.length - 1) {
     return true;
   }
@@ -50,6 +56,9 @@ function yShouldBeVowel(position: number, segment: AnnotatedLetter[]): boolean {
 }
 
 function wShouldBeVowel(position: number, segment: AnnotatedLetter[]): boolean {
+  if (position !== 0 && isVowel(segment, position - 1)) {
+    return false;
+  } // remove ^ once digraphs are properly treated
   if (position === segment.length - 1) {
     return true;
   }

@@ -19,7 +19,17 @@ function getIPAForVowel(letter) {
     let ipaAnnotation = letter.annotations.filter(
       (annotation) => annotations[annotation].ipa
     )[0];
-    ipaAnnotation = ipaAnnotation ? ipaAnnotation : "stressed";
+
+    if (!ipaAnnotation) {
+      if (
+        letter.annotations.includes("main_stress") ||
+        letter.annotations.includes("secondary_stress")
+      ) {
+        ipaAnnotation = "stressed";
+      } else {
+        ipaAnnotation = "unStressed";
+      }
+    }
 
     if (!vowels[letter.plainText]) {
       // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
@@ -32,8 +42,10 @@ function getIPAForVowel(letter) {
       letter.ipa = "NOIPA";
       return "";
     }
+
     letter.ipa = vowels[letter.plainText][ipaAnnotation]?.ipa;
   }
+
   if (letter.annotations.includes("main_stress")) {
     letter.ipa = "M" + letter.ipa;
   }

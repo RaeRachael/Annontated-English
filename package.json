@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./__tests__/playground_test.ts"
+    "test": "jest ./__tests__/"
   },
   "author": "",
   "license": "ISC",

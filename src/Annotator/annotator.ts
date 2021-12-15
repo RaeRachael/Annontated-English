@@ -17,6 +17,7 @@ export function annotate(plainText: string) {
   const ipaNeeded = getIPAForText(plainText);
   // console.log(ipaNeeded, "needed");
   const lettersAE = buildAECodeForText(plainText);
+  console.log(lettersAE, "builtLetters");
   let correctAE: AnnotatedLetter[] = [];
 
   correctAE = mutateAsNeeded(lettersAE, ipaNeeded) || [];
@@ -48,19 +49,20 @@ function buildAECodeForText(plainText: string): AnnotatedLetter[] {
         )
       );
       i++;
-      // } else if (
-      //   i + 1 !== plainText.length &&
-      //   digraphs.vowel.includes(plainText[i] + plainText[i + 1])
-      // ) {
-      //   letters.push(
-      //     makeAnnotatedLetter(
-      //       plainText[i] + plainText[i + 1],
-      //       ["digraph"],
-      //       true,
-      //       "vowel"
-      //     )
-      //   );
-      //   i++;
+    } else if (
+      i + 1 !== plainText.length &&
+      digraphs.vowel.includes(plainText[i] + plainText[i + 1])
+    ) {
+      letters.push(
+        makeAnnotatedLetter(
+          plainText[i] + plainText[i + 1],
+          ["digraph"],
+          true,
+          "vowel"
+        )
+      );
+      i++;
+      console.log("vowel digraph", letters);
     } else if (Object.keys(vowels).includes(plainText[i])) {
       letters.push(makeAnnotatedLetter(plainText[i], [], false, "vowel"));
     } else {
@@ -115,7 +117,7 @@ function mutateAsNeeded(
       ];
       lettersAE = mutatedLettersAE;
     }
-    console.log(lettersAE, i, "mutation stage");
+    console.log(lettersAE[i], ipaString, "mutation stage", i);
     if (i === lettersAE.length - 1) {
       console.log("finished mutation");
       return lettersAE;
@@ -131,44 +133,51 @@ export function mutateLetter(
   let testAE: AnnotatedLetter[] = JSON.parse(JSON.stringify(lettersAE));
 
   if (lettersAE[index].digraph) {
-    let splitTestAE = [
-      ...lettersAE.slice(0, index),
-      makeAnnotatedLetter(testAE[index].plainText[0], [], false, "consonant"),
-      makeAnnotatedLetter("", ["simple_seperator"], false, "undetermined"),
-      makeAnnotatedLetter(testAE[index].plainText[1], [], false, "consonant"),
-      ...lettersAE.slice(index + 1, lettersAE.length),
-    ];
-    let ipaAESection = getIPAForAE(splitTestAE.slice(0, index + 1));
+    let mutatedLetters = mutateAndSplitLetter(
+      lettersAE,
+      // testAE,
+      index,
+      targetIPA
+    );
 
-    if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
-      // console.log("good mutation - plain split", ipaAESection, targetIPA);
-      splitTestAE[index].annotations = [];
-      // console.log(splitTestAE.slice(index, index + 3), "split digraph");
-      return splitTestAE.slice(index, index + 3);
+    if (mutatedLetters[0]) {
+      return mutatedLetters;
     }
   }
 
   for (const [name, annotationHere] of Object.entries(annotations)) {
     if (lettersAE[index].digraph) {
-      let splitTestAE = [
-        ...lettersAE.slice(0, index),
-        makeAnnotatedLetter(testAE[index].plainText[0], [], false, "consonant"),
-        makeAnnotatedLetter(testAE[index].plainText[1], [], false, "consonant"),
-        ...lettersAE.slice(index + 1, lettersAE.length),
-      ];
+      // let splitTestAE = [
+      //   ...lettersAE.slice(0, index),
+      //   makeAnnotatedLetter(
+      //     testAE[index].plainText[0],
+      //     [],
+      //     false,
+      //     "undetermined"
+      //   ),
+      //   makeAnnotatedLetter(
+      //     testAE[index].plainText[1],
+      //     [],
+      //     false,
+      //     "undetermined"
+      //   ),
+      //   ...lettersAE.slice(index + 1, lettersAE.length),
+      // ];
 
-      if (["consonant", "letter", "any"].includes(annotationHere.valid)) {
-        if (isAnnotation(name)) {
-          splitTestAE[index].annotations = [name];
-          let ipaAESection = getIPAForAE(splitTestAE.slice(0, index + 1));
+      // if (["consonant", "letter", "any"].includes(annotationHere.valid)) {
+      if (isAnnotation(name)) {
+        let mutatedLetters = mutateAndSplitLetterWithAnnotation(
+          lettersAE,
+          index,
+          targetIPA,
+          name
+        );
 
-          if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
-            console.log("good mutation", name, ipaAESection, targetIPA);
-            splitTestAE[index].annotations = [name];
-            return splitTestAE.slice(index, index + 2);
-          }
+        if (mutatedLetters[0]) {
+          return mutatedLetters;
         }
       }
+      // }
     }
     if (
       (lettersAE[index].groupType === "vowel" ||
@@ -177,85 +186,29 @@ export function mutateLetter(
       ["vowel", "letter", "any"].includes(annotationHere.valid)
     ) {
       if (isAnnotation(name)) {
-        testAE[index].annotations = testAE[index].digraph
-          ? ["digraph", name]
-          : [name];
-        let ipaAESection = getIPAForAE(testAE.slice(0, index + 1));
+        let mutatedLetter = mutateLetterWithAnnotation(
+          lettersAE,
+          testAE,
+          index,
+          targetIPA,
+          name
+        );
 
-        // console.log(name, ipaAESection, targetIPA);
-
-        if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
-          // console.log("good mutation", name, ipaAESection, targetIPA);
-          if (
-            index !== lettersAE.length - 1 &&
-            ["y_semiconsonant", "w_semiconsonant"].includes(name) &&
-            lettersAE[index + 1].groupType === "consonant"
-          ) {
-            // console.log("added ", name, " as new letter at", index, lettersAE);
-            return [
-              makeAnnotatedLetter("\u200b", [name], false, "consonant"),
-              lettersAE[index],
-            ];
-          }
-          lettersAE[index].annotations = testAE[index].annotations;
-          return [lettersAE[index]];
+        if (mutatedLetter[0]) {
+          return mutatedLetter;
         }
-        // ["main_stress", "secondary_stress"].forEach((stress) => {
-        // if (isAnnotation("main")) {
-        testAE[index].annotations = testAE[index].digraph
-          ? ["digraph", "main_stress", name]
-          : ["main_stress", name];
-        ipaAESection = getIPAForAE(testAE.slice(0, index + 1));
 
-        // console.log(testAE[index].annotations, ipaAESection, targetIPA);
+        mutatedLetter = mutateLetterWithAnnotationStress(
+          lettersAE,
+          testAE,
+          index,
+          targetIPA,
+          name
+        );
 
-        if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
-          // console.log(
-          //   "good mutation",
-          //   "main_stress",
-          //   name,
-          //   ipaAESection,
-          //   targetIPA,
-          //   testAE[index].annotations
-          // );
-          lettersAE[index].annotations = testAE[index].annotations;
-          return [lettersAE[index]];
+        if (mutatedLetter[0]) {
+          return mutatedLetter;
         }
-        // }
-
-        // if (isAnnotation(stress)) {
-        testAE[index].annotations = testAE[index].digraph
-          ? ["digraph", "secondary_stress", name]
-          : ["secondary_stress", name];
-        ipaAESection = getIPAForAE(testAE.slice(0, index + 1));
-
-        // console.log(testAE[index].annotations, ipaAESection, targetIPA);
-
-        if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
-          console.log(
-            "good mutation",
-            "secondary_stress",
-            name,
-            ipaAESection,
-            targetIPA,
-            testAE[index].annotations
-          );
-          if (name === "y_semiconsonant") {
-            return [
-              makeAnnotatedLetter(
-                "\u200b",
-                ["y_semiconsonant"],
-                false,
-                "consonant"
-              ),
-              lettersAE[index],
-            ];
-          }
-          lettersAE[index].annotations = testAE[index].annotations;
-          return [lettersAE[index]];
-        }
-        // }
-        // });
       }
     }
     if (
@@ -265,62 +218,20 @@ export function mutateLetter(
       ["consonant", "letter", "any"].includes(annotationHere.valid)
     ) {
       if (isAnnotation(name)) {
-        testAE[index].annotations = testAE[index].digraph
-          ? ["digraph", name]
-          : [name];
+        let mutatedLetter = mutateLetterWithAnnotation(
+          lettersAE,
+          testAE,
+          index,
+          targetIPA,
+          name
+        );
 
-        let ipaAESection = getIPAForAE(testAE.slice(0, index + 1));
-
-        if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
-          // console.log("good mutation", name, ipaAESection, targetIPA);
-          if (name === "y_semiconsonant") {
-            return [
-              makeAnnotatedLetter(
-                "\u200b",
-                ["y_semiconsonant"],
-                false,
-                "consonant"
-              ),
-              lettersAE[index],
-            ];
-          }
-          lettersAE[index].annotations = testAE[index].annotations;
-          return [lettersAE[index]];
+        if (mutatedLetter[0]) {
+          return mutatedLetter;
         }
       }
     }
   }
-
-  // if (index >= lettersAE.length) {
-  //   return
-  // }
-  // let change:boolean
-  // let mutatingAE: AnnotatedLetter[] = JSON.parse(JSON.stringify(lettersAE))
-
-  // for (const [name, annotationHere] of Object.entries(annotations)) {
-  //   change = false
-  //   if (mutatingAE[index].groupType === "vowel" &&
-  //     ["vowel", "letter", "any"].includes(annotationHere.valid)) {
-  //     if (isAnnotation(name)) {
-  //       mutatingAE[index].annotations = [name]
-  //       change = true
-  //     }
-  //   }
-  //   if (mutatingAE[index].groupType === "consonant" &&
-  //     ["consonant", "letter", "any"].includes(annotationHere.valid)) {
-  //     if (isAnnotation(name)) {
-  //       mutatingAE[index].annotations = [name]
-  //       change = true
-  //     }
-  //   }
-  //   // if (checker(JSON.parse(JSON.stringify(mutatingAE)), ipaString)) {
-  //   //   return mutatingAE
-  //   // }
-  //   if (change || name === 'digraph') { //digraph is the first one (and will never be added)
-  //     const reMutatedAE = mutateAsNeeded(mutatingAE, ipaString, index + 1)
-  //     if (reMutatedAE) return reMutatedAE
-  //   }
-  // }
   console.log(
     "faield to find a correct mutation",
     // index,
@@ -329,4 +240,183 @@ export function mutateLetter(
     // targetIPA
   );
   return [lettersAE[index]];
+}
+
+function mutateLetterWithAnnotation(
+  lettersAE: AnnotatedLetter[],
+  testAE: AnnotatedLetter[],
+  index: number,
+  targetIPA: string,
+  annotation: string
+): AnnotatedLetter[] {
+  if (isAnnotation(annotation)) {
+    testAE[index].annotations = testAE[index].digraph
+      ? ["digraph", annotation]
+      : [annotation];
+
+    let ipaAESection = getIPAForAE(testAE.slice(0, index + 1));
+
+    if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
+      // console.log("good mutation", name, ipaAESection, targetIPA);
+      if (
+        index !== lettersAE.length - 1 &&
+        ["y_semiconsonant", "w_semiconsonant"].includes(annotation) &&
+        lettersAE[index + 1].groupType === "consonant"
+      ) {
+        return [
+          makeAnnotatedLetter("\u200b", [annotation], false, "consonant"),
+          lettersAE[index],
+        ];
+      }
+      // lettersAE[index].annotations = testAE[index].annotations;
+      return [testAE[index]];
+    }
+  } else {
+    console.log("not annotation", annotation);
+  }
+  return [];
+}
+
+function mutateLetterWithAnnotationStress(
+  lettersAE: AnnotatedLetter[],
+  testAE: AnnotatedLetter[],
+  index: number,
+  targetIPA: string,
+  annotation: string
+): AnnotatedLetter[] {
+  if (isAnnotation(annotation) && isAnnotation("main_stress")) {
+    testAE[index].annotations = testAE[index].digraph
+      ? ["digraph", "main_stress", annotation]
+      : ["main_stress", annotation];
+
+    let ipaAESection = getIPAForAE(testAE.slice(0, index + 1));
+
+    if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
+      // console.log("good mutation", name, ipaAESection, targetIPA);
+      if (
+        index !== lettersAE.length - 1 &&
+        ["y_semiconsonant", "w_semiconsonant"].includes(annotation) &&
+        lettersAE[index + 1].groupType === "consonant"
+      ) {
+        return [
+          makeAnnotatedLetter("\u200b", [annotation], false, "consonant"),
+          lettersAE[index],
+        ];
+      }
+      // lettersAE[index].annotations = testAE[index].annotations;
+      return [testAE[index]];
+    }
+  }
+  if (isAnnotation(annotation) && isAnnotation("secondary_stress")) {
+    testAE[index].annotations = testAE[index].digraph
+      ? ["digraph", "secondary_stress", annotation]
+      : ["secondary_stress", annotation];
+
+    let ipaAESection = getIPAForAE(testAE.slice(0, index + 1));
+
+    if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
+      // console.log("good mutation", name, ipaAESection, targetIPA);
+      if (
+        index !== lettersAE.length - 1 &&
+        ["y_semiconsonant", "w_semiconsonant"].includes(annotation) &&
+        lettersAE[index + 1].groupType === "consonant"
+      ) {
+        return [
+          makeAnnotatedLetter("\u200b", [annotation], false, "consonant"),
+          lettersAE[index],
+        ];
+      }
+      // lettersAE[index].annotations = testAE[index].annotations;
+      return [testAE[index]];
+    }
+  }
+
+  return [];
+}
+
+function mutateAndSplitLetter(
+  lettersAE: AnnotatedLetter[],
+  index: number,
+  targetIPA: string
+): AnnotatedLetter[] {
+  let splitTestAE = [
+    ...lettersAE.slice(0, index),
+    makeAnnotatedLetter(
+      lettersAE[index].plainText[0],
+      [],
+      false,
+      lettersAE[index].groupType === "vowel" ? "vowel" : "consonant"
+    ),
+    makeAnnotatedLetter("", ["simple_seperator"], false, "undetermined"),
+    makeAnnotatedLetter(
+      lettersAE[index].plainText[1],
+      [],
+      false,
+      lettersAE[index].groupType === "vowel" ? "vowel" : "consonant"
+    ),
+    ...lettersAE.slice(index + 1, lettersAE.length),
+  ];
+  let ipaAESection = getIPAForAE(splitTestAE.slice(0, index + 1));
+
+  if (targetIPA.substring(0, ipaAESection.length) === ipaAESection) {
+    return splitTestAE.slice(index, index + 3);
+  }
+
+  return [];
+}
+
+function mutateAndSplitLetterWithAnnotation(
+  lettersAE: AnnotatedLetter[],
+  index: number,
+  targetIPA: string,
+  annotation: string
+): AnnotatedLetter[] {
+  let splitTestAE = [
+    ...lettersAE.slice(0, index),
+    makeAnnotatedLetter(
+      lettersAE[index].plainText[0],
+      [],
+      false,
+      lettersAE[index].groupType === "vowel" ? "vowel" : "consonant"
+    ),
+    makeAnnotatedLetter(
+      lettersAE[index].plainText[1],
+      [],
+      false,
+      lettersAE[index].groupType === "vowel" ? "vowel" : "consonant"
+    ),
+    ...lettersAE.slice(index + 1, lettersAE.length),
+  ];
+
+  if (isAnnotation(annotation)) {
+    let mutatedLetter = mutateLetterWithAnnotation(
+      lettersAE,
+      splitTestAE,
+      index,
+      targetIPA,
+      annotation
+    );
+
+    if (mutatedLetter[0]) {
+      console.log("split letter", mutatedLetter, splitTestAE, index);
+      return [...mutatedLetter, splitTestAE[index + 1]];
+    }
+
+    if (lettersAE[index].groupType === "vowel") {
+      mutatedLetter = mutateLetterWithAnnotationStress(
+        lettersAE,
+        splitTestAE,
+        index,
+        targetIPA,
+        annotation
+      );
+
+      if (mutatedLetter[0]) {
+        return [...mutatedLetter, splitTestAE[index + 1]];
+      }
+    }
+  } else {
+    console.log("not annotation", annotation);
+  }
+  return [];
 }

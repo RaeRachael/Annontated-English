@@ -92,7 +92,9 @@ export const vowels = {
     iotted: {
       ipa: "i",
     },
-    round: {},
+    round: {
+      ipa: "ɜː",
+    },
     opaque: {
       ipa: "ɔ",
     },
@@ -101,7 +103,7 @@ export const vowels = {
   },
   o: {
     natural: {
-      ipa: "ə‍ʊ", //"oʊ",
+      ipa: "əʊ", //"oʊ",
     },
     plain: {
       ipa: "ɒ", //"ɑ",
@@ -184,6 +186,9 @@ export const vowels = {
     },
     broad: {
       ipa: "uː",
+    },
+    opaque: {
+      ipa: "ʊ",
     },
   },
   aa: {

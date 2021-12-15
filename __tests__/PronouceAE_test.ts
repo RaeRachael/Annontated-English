@@ -80,7 +80,7 @@ describe("getIPAForAE", () => {
       },
       {
         plainText: "e",
-        annotations: ["central"],
+        annotations: ["schwa"],
         annotatedString: "",
         ipa: "",
         digraph: false,
@@ -88,6 +88,20 @@ describe("getIPAForAE", () => {
       },
     ];
     expect(getIPAForAE(testWord)).toEqual("ðə");
+  });
+
+  test("oi", () => {
+    let testWord: AnnotatedLetter[] = [
+      {
+        plainText: "oi",
+        annotations: ["digraph"],
+        annotatedString: "",
+        ipa: "",
+        digraph: true,
+        groupType: "vowel",
+      },
+    ];
+    expect(getIPAForAE(testWord)).toEqual("ɔɪ");
   });
 
   describe("stress on vowels", () => {

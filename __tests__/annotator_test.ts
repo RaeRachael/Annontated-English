@@ -266,6 +266,13 @@ describe("annotate - adds annotiona to get IPA", () => {
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });
+
+  test("exploitation", () => {
+    let testWord: string = "exploitation";
+    let expectedAE: string = "e̓xplo\u200bitã̩t̻ỉo͓n";
+
+    expect(annotate(testWord)).toEqual(expectedAE);
+  });
 });
 
 describe("checker - checks AE against ipa dictionary", () => {
