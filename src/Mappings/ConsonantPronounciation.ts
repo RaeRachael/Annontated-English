@@ -74,7 +74,7 @@ export const consonants = {
     common_change: "ɾ",
     soft_voiced: "ʒ",
     soft_voiceless: "ʃ",
-    hard_voiceless: "ʧ",
+    hard_voiceless: "tʃ", //"ʧ",
   },
   v: {
     "": "v",

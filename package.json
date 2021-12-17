@@ -4,15 +4,37 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./__tests__/"
+    "test": "jest ./__tests__/playground_test.ts",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test-react": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.3",
+    "@types/react": "^17.0.37",
     "jest": "^27.0.6",
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@types/react-dom": "^17.0.11",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^5.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -12,6 +12,7 @@ export function AnnotatedCodeToAnnotatedText(word: AnnotatedLetter[]): string {
     ) {
       // console.log("remove unneded w_semiconst", i, word);
       word[i].annotations = [];
+      word[i].groupType = "consonant";
     }
     if (
       word[i].plainText === "y" &&
@@ -19,6 +20,7 @@ export function AnnotatedCodeToAnnotatedText(word: AnnotatedLetter[]): string {
       word[i].annotations.includes("y_semiconsonant")
     ) {
       word[i].annotations = [];
+      word[i].groupType = "consonant";
     }
     getAnnotatedText(word[i]);
   }
