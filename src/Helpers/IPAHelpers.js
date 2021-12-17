@@ -31,19 +31,21 @@ function getIPAForVowel(letter) {
       }
     }
 
-    if (!vowels[letter.plainText]) {
+    let letterPlainText = letter.plainText.toLowerCase();
+
+    if (!vowels[letterPlainText]) {
       // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
       letter.ipa = "NOIPA-NOTvalidVowel";
       return "";
     }
 
-    if (!vowels[letter.plainText][ipaAnnotation]?.ipa) {
+    if (!vowels[letterPlainText][ipaAnnotation]?.ipa) {
       // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
       letter.ipa = "NOIPA";
       return "";
     }
 
-    letter.ipa = vowels[letter.plainText][ipaAnnotation]?.ipa;
+    letter.ipa = vowels[letterPlainText][ipaAnnotation]?.ipa;
   }
 
   if (letter.annotations.includes("main_stress")) {
@@ -56,6 +58,11 @@ function getIPAForVowel(letter) {
 }
 
 function getIPAForConsonant(letter) {
+  if ([".", ","].includes(letter.plainText)) {
+    // punctuation escape
+    letter.ipa = "";
+    return;
+  }
   if (letter.annotations.includes("silent")) {
     letter.ipa = "";
     return;
@@ -73,19 +80,21 @@ function getIPAForConsonant(letter) {
   )[0];
   ipaAnnotation = ipaAnnotation ? ipaAnnotation : "";
 
-  if (!consonants[letter.plainText]) {
+  let letterPlainText = letter.plainText.toLowerCase();
+
+  if (!consonants[letterPlainText]) {
     // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
     letter.ipa = "NOIPA-NOTvalidConsonant";
     return "";
   }
 
-  if (!consonants[letter.plainText][ipaAnnotation]) {
+  if (!consonants[letterPlainText][ipaAnnotation]) {
     // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
     letter.ipa = "NOIPA";
     return "";
   }
 
-  letter.ipa = consonants[letter.plainText][ipaAnnotation];
+  letter.ipa = consonants[letterPlainText][ipaAnnotation];
 
   if (letter.annotations.includes("schwa")) {
     letter.ipa = "ə" + letter.ipa;

@@ -64,7 +64,7 @@ export const vowels = {
       ipa: "oʊ",
     },
     opaque: {
-      ipa: "ɔ",
+      ipa: "ɜː", //"ɔ",
     },
     idiphthong: {
       ipa: "aɪ",
@@ -143,7 +143,9 @@ export const vowels = {
     broad: {
       ipa: "uː",
     },
-    clear: {},
+    clear: {
+      ipa: "ɜː", //RAE addition - 'turkey'
+    },
     central: {
       ipa: "ɛ",
     },

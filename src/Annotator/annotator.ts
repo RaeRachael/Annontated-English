@@ -38,7 +38,7 @@ function buildAECodeForText(plainText: string): AnnotatedLetter[] {
   for (var i = 0; i < plainText.length; i++) {
     if (
       i + 1 !== plainText.length &&
-      digraphs.consonant.includes(plainText[i] + plainText[i + 1])
+      digraphs.consonant.includes(plainText[i].toLowerCase() + plainText[i + 1])
     ) {
       letters.push(
         makeAnnotatedLetter(
@@ -51,7 +51,7 @@ function buildAECodeForText(plainText: string): AnnotatedLetter[] {
       i++;
     } else if (
       i + 1 !== plainText.length &&
-      digraphs.vowel.includes(plainText[i] + plainText[i + 1])
+      digraphs.vowel.includes(plainText[i].toLowerCase() + plainText[i + 1])
     ) {
       letters.push(
         makeAnnotatedLetter(

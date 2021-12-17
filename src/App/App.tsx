@@ -11,13 +11,27 @@ interface ITestState {
 }
 
 export default class App extends React.Component<ITestProps, ITestState> {
-  state = {
-    text: "",
-  };
+  constructor(props: ITestProps) {
+    super(props);
 
-  // function handleAnnotation(text: string) {
+    this.state = {
+      text: "",
+    };
 
-  // }
+    this.handleAnnotation = this.handleAnnotation.bind(this);
+  }
+  // state = {
+  //   text: "",
+  // };
+
+  handleAnnotation(text: string) {
+    text = text.trim();
+    let words: string[] = text.split(" ");
+    console.log(text, words, "input");
+    words = words.map((word) => annotate(word));
+    console.log(words.join(" "), words, "output");
+    this.setState({ text: words.join(" ") });
+  }
 
   render() {
     return (
@@ -30,9 +44,10 @@ export default class App extends React.Component<ITestProps, ITestState> {
               text: { value: string };
             };
             console.log(target);
-            let AEtext = annotate(target.text.value);
-            this.setState({ text: AEtext });
-            console.log(AEtext);
+            this.handleAnnotation(target.text.value);
+            // let AEtext = annotate(target.text.value);
+            // this.setState({ text: AEtext });
+            // console.log(AEtext);
           }}
         >
           <div>
