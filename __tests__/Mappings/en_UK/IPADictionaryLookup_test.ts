@@ -1,4 +1,4 @@
-import { getIPAForText } from "../src/Mappings/collectIPA";
+import { getIPAForText } from "../../../src/Mappings/collectIPA";
 
 describe("getIPAFor", () => {
   describe("should return the ipa for plainText word", () => {

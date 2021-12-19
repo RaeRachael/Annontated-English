@@ -17,7 +17,7 @@ export function annotate(plainText: string) {
   const ipaNeeded = getIPAForText(plainText);
   // console.log(ipaNeeded, "needed");
   const lettersAE = buildAECodeForText(plainText);
-  console.log(lettersAE, "builtLetters");
+  // console.log(lettersAE, "builtLetters");
   let correctAE: AnnotatedLetter[] = [];
 
   correctAE = mutateAsNeeded(lettersAE, ipaNeeded) || [];
@@ -62,7 +62,7 @@ function buildAECodeForText(plainText: string): AnnotatedLetter[] {
         )
       );
       i++;
-      console.log("vowel digraph", letters);
+      // console.log("vowel digraph", letters);
     } else if (Object.keys(vowels).includes(plainText[i])) {
       letters.push(makeAnnotatedLetter(plainText[i], [], false, "vowel"));
     } else {
@@ -117,7 +117,7 @@ function mutateAsNeeded(
       ];
       lettersAE = mutatedLettersAE;
     }
-    console.log(lettersAE[i], ipaString, "mutation stage", i);
+    // console.log(lettersAE[i], ipaString, "mutation stage", i);
     if (i === lettersAE.length - 1) {
       console.log("finished mutation");
       return lettersAE;
@@ -398,7 +398,7 @@ function mutateAndSplitLetterWithAnnotation(
     );
 
     if (mutatedLetter[0]) {
-      console.log("split letter", mutatedLetter, splitTestAE, index);
+      // console.log("split letter", mutatedLetter, splitTestAE, index);
       return [...mutatedLetter, splitTestAE[index + 1]];
     }
 

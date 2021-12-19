@@ -3,8 +3,8 @@ import {
   indentifyWordSegments,
   makeVowelDigraphs,
   removeSilentLetters,
-} from "../src/Interpretor/PronouceAE";
-import { AnnotatedLetter } from "../src/Types/AnnotedLetter";
+} from "../../src/Interpretor/PronouceAE";
+import { AnnotatedLetter } from "../../src/Types/AnnotedLetter";
 
 describe("removeSilentLetters", () => {
   test("should remove letters marked with silent annotation", () => {

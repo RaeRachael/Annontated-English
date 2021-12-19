@@ -1,6 +1,5 @@
-import { annotate, checker, mutateLetter } from "../src/Annotator/annotator";
-// import { AnnotatedCodeToAnnotatedText } from "../src/Mappings/AECodeToAE"
-import { AnnotatedLetter, annotation } from "../src/Types/AnnotedLetter";
+import { annotate, checker, mutateLetter } from "../../src/Annotator/annotator";
+import { AnnotatedLetter, annotation } from "../../src/Types/AnnotedLetter";
 
 describe("mutate - adds annotation to specific AE letter", () => {
   test("split digraph", () => {

@@ -7,7 +7,7 @@ export const consonants = {
     common_change: "k",
     voiceless: "s",
     soft_voiceless: "ʃ",
-    hard_voiceless: "ʧ",
+    hard_voiceless: "tʃ", //"ʧ",
   },
   d: {
     "": "d",

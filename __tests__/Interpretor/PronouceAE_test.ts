@@ -1,5 +1,5 @@
-import { getIPAForAE } from "../src/Interpretor/PronouceAE";
-import { AnnotatedLetter } from "../src/Types/AnnotedLetter";
+import { getIPAForAE } from "../../src/Interpretor/PronouceAE";
+import { AnnotatedLetter } from "../../src/Types/AnnotedLetter";
 
 describe("getIPAForAE", () => {
   test("", () => {

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./__tests__/playground_test.ts",
+    "test": "jest ./__tests__/ --verbose",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test-react": "react-scripts test --env=jsdom",

@@ -112,7 +112,7 @@ export const vowels = {
       ipa: "ɔː",
     },
     clear: {
-      ipa: "ʌ",
+      ipa: "ʌ", //repeated??
     },
     central: {
       ipa: "ʌ",

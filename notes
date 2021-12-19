@@ -1,0 +1,31 @@
+flower goes wrong
+
+exploitation - need vowel digraphs
+
+re-structor tests.
+
+Annotator
+  - annotate
+
+  - build AEletters
+  - mutatations
+    - vowels
+    - consonants
+    - digraphs
+  - getAnnotatedText
+
+Interpretor
+  - pronounce AE
+
+  - removeSilentLetters
+  - identifyWordSegments
+  - Digraph creation
+  - vowelConsantMarkers
+
+Mappings
+  - getIPAForLetter
+    - vowel
+    - consonants
+    - undetermined
+  - getIPAForWord
+  

@@ -1,5 +1,5 @@
-import { AnnotatedCodeToAnnotatedText } from "../src/Mappings/AECodeToAE";
-import { AnnotatedLetter } from "../src/Types/AnnotedLetter";
+import { AnnotatedCodeToAnnotatedText } from "../../src/Mappings/AECodeToAE";
+import { AnnotatedLetter } from "../../src/Types/AnnotedLetter";
 
 describe("AnnotatedCodeToAnnotatedText", () => {
   describe("should turn AnnotatedLetters[] into a string of annotated letters", () => {

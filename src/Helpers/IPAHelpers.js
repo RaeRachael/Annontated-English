@@ -41,7 +41,7 @@ function getIPAForVowel(letter) {
 
     if (!vowels[letterPlainText][ipaAnnotation]?.ipa) {
       // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
-      letter.ipa = "NOIPA";
+      letter.ipa = "NO_IPA";
       return "";
     }
 
@@ -90,7 +90,7 @@ function getIPAForConsonant(letter) {
 
   if (!consonants[letterPlainText][ipaAnnotation]) {
     // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
-    letter.ipa = "NOIPA";
+    letter.ipa = "NO_IPA";
     return "";
   }
 
