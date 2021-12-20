@@ -11,5 +11,5 @@ export function getIPAForText(word: string): string {
     .substring(1, ipa.length - 1)
     .replace("ˈ", "M")
     .replace("ˌ", "S")
-    .replace("\u200b", "");
+    .replace(/u200B/g, "");
 }

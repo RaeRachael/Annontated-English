@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 
-
-function Annotated(props: {text: string}) {
+function Annotated(props: { text: string }) {
   return (
     <div className="Annotated">
-      <div style={{fontSize: "30px", fontFamily: "arial"}}>{props.text}</div>
+      <div style={{ fontSize: "30px" }}>{props.text}</div>
     </div>
   );
 }
