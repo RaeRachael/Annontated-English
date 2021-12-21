@@ -4,7 +4,7 @@ describe("getIPAFor", () => {
   describe("should return the ipa for plainText word", () => {
     test("'house' - 'hˈa‍ʊs'", () => {
       let testWord = "house";
-      expect(getIPAForText(testWord)).toEqual("hMa‍ʊs"); //"hˈa‍ʊs"
+      expect(getIPAForText(testWord)).toEqual("hMaʊs"); //"hˈa‍ʊs"
     });
 
     test("'cheese' - 't‍ʃˈiːz'", () => {

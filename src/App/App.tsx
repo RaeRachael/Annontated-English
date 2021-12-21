@@ -53,7 +53,7 @@ export default class App extends React.Component<ITestProps, ITestState> {
           <div>
             <label>
               Text:
-              <input type="text" name="text" />
+              <textarea name="text" style={{ width: "80%", height: "20%" }} />
             </label>
           </div>
           <div>

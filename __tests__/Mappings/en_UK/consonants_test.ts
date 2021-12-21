@@ -2057,7 +2057,7 @@ describe("getIPAForConsonant - X", () => {
   test("x no annotation - ks", () => {
     let testLetter: AnnotatedLetter;
     testLetter = {
-      plainText: "ks",
+      plainText: "x",
       annotations: [],
       annotatedString: "",
       ipa: "",
@@ -2071,7 +2071,7 @@ describe("getIPAForConsonant - X", () => {
   test("x common_change - z", () => {
     let testLetter: AnnotatedLetter;
     testLetter = {
-      plainText: "z",
+      plainText: "x",
       annotations: ["common_change"],
       annotatedString: "",
       ipa: "",
@@ -2299,7 +2299,7 @@ describe("getIPAForConsonant - Z", () => {
   test("z common_change - ts", () => {
     let testLetter: AnnotatedLetter;
     testLetter = {
-      plainText: "ts",
+      plainText: "z",
       annotations: ["common_change"],
       annotatedString: "",
       ipa: "",
