@@ -94,7 +94,6 @@ function mutateAsNeeded(
     let ipaAESection = getIPAForAE(lettersAE.slice(0, i + 1));
 
     if (ipaString.substring(0, ipaAESection.length) === ipaAESection) {
-      i++;
       // console.log(
       //   "index,",
       //   i,
@@ -103,6 +102,7 @@ function mutateAsNeeded(
       //   ipaString.substring(0, ipaAESection.length),
       //   "no mutation needed"
       // );
+      i++;
     } else {
       // console.log(
       //   "index,",
@@ -132,6 +132,7 @@ function mutateAsNeeded(
       // console.log(mutatedLettersAE, "post mutation");
       lettersAE = mutatedLettersAE;
       i += mutatedLetterObject.numberMutated;
+      // console.log(lettersAE, i, "next to check");
     }
     // console.log(lettersAE[i], ipaString, "mutation stage", i);
     if (i === lettersAE.length) {
@@ -157,6 +158,7 @@ export function mutateLetter(
     );
 
     if (mutatedLetters.numberMutated !== -1) {
+      // console.log(mutatedLetters, "this one");
       return mutatedLetters;
     }
   }
@@ -229,13 +231,13 @@ export function mutateLetter(
       }
     }
   }
-  // console.log(
-  //   "faield to find a correct mutation",
-  //   // index,
-  //   lettersAE[index]
-  //   // lettersAE,
-  //   // targetIPA
-  // );
+  console.log(
+    "faield to find a correct mutation",
+    // index,
+    lettersAE[index]
+    // lettersAE,
+    // targetIPA
+  );
   return { letters: [lettersAE[index]], numberMutated: 1 };
 }
 

@@ -45,11 +45,6 @@ export function indentifyWordSegments(
   let wordSegments: [AnnotatedLetter[]] = [[]];
   let numberOfSegments = 0;
   for (var i = 0; i < word.length; i++) {
-    if (i + 1 === word.length) {
-      wordSegments[numberOfSegments] = word.splice(0, i + 1);
-      numberOfSegments++;
-      continue;
-    }
     if (
       (word[i].plainText === "'" && word[i + 1].plainText !== "r") ||
       word[i].annotations.some((annotation) =>
@@ -66,7 +61,13 @@ export function indentifyWordSegments(
       word.splice(i, 1);
       i--;
     }
+    if (i + 1 >= word.length) {
+      wordSegments[numberOfSegments] = word.splice(0, i + 1);
+      numberOfSegments++;
+      continue;
+    }
   }
+  // console.log(wordSegments);
   return wordSegments;
 }
 

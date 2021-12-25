@@ -49,3 +49,4 @@ sounds are annotated (when needed) with marks below the letter
 - Add common english rules, that will reduced the annotation marks added - which can switched on and off by the webapp
 - Potentially allow options around how the annotations look - supplying them with colours, stress by underlined?
 - Expand the webapp - including tables about how letter-annotation combinations should be pronounced
+- Set up an API route for annotating text

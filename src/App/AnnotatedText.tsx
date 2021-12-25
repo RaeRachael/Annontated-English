@@ -1,6 +1,6 @@
 import React from "react";
 
-function Annotated(props: { text: string }) {
+function AnnotatedText(props: { text: string }) {
   return (
     <div className="Annotated">
       <div style={{ fontSize: "30px", fontFamily: "sans-serif" }}>
@@ -10,4 +10,4 @@ function Annotated(props: { text: string }) {
   );
 }
 
-export default Annotated;
+export default AnnotatedText;
