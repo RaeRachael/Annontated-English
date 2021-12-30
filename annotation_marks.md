@@ -100,11 +100,11 @@ c̥
 
 c̬ / c̭
 
-# soft voiced \u033a ̺ l[S]/ soft voiceless \u032a ̪ l[s]
+# soft voiced \u033b ̺ l[S]/ soft voiceless \u032a ̪ l[s]
 
 c̺ / c̪
 
-# hard voiced \u033a\u0331 ̺̱ l[H] / hard voiceless \u032a\u0331 ̪̱ l[h]
+# hard voiced \u033b\u0331 ̺̱ l[H] / hard voiceless \u032a\u0331 ̪̱ l[h]
 
 c̺̱ / c̪̱
 

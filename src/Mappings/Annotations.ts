@@ -161,7 +161,7 @@ export const annotations: annotationsType = {
   },
   soft_voiceless: {
     mark: "down block below",
-    unicode: "\u033b",
+    unicode: "\u033a",
     valid: "consonant",
     type: "consonant",
     ipa: true,
@@ -175,7 +175,7 @@ export const annotations: annotationsType = {
   },
   hard_voiceless: {
     mark: "down block and line below",
-    unicode: "\u033b\u0331",
+    unicode: "\u033a\u0331",
     valid: "consonant",
     type: "consonant",
     ipa: true,
