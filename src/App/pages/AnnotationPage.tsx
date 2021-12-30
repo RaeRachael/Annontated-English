@@ -1,6 +1,6 @@
 import React from "react";
-import AnnotatedText from "./AnnotatedText";
-import { annotate } from "../Annotator/annotator";
+import AnnotatedText from "../components/AnnotatedText";
+import { annotate } from "../../Annotator/annotator";
 
 // import './App.css';
 
