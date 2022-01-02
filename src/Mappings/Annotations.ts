@@ -49,6 +49,7 @@ export const annotations: annotationsType = {
   plain: {
     mark: "comma above",
     unicode: "\u0313",
+    doublecode: "\u200b\u0313",
     valid: "vowel",
     type: "vowel",
     ipa: true,
@@ -64,7 +65,7 @@ export const annotations: annotationsType = {
   clear: {
     mark: "up arrow above",
     unicode: "\u0302",
-    doublecode: "1dcd",
+    doublecode: "\u1dcd",
     valid: "vowel",
     type: "vowel",
     ipa: true,
@@ -72,6 +73,7 @@ export const annotations: annotationsType = {
   central: {
     mark: "two dots above",
     unicode: "\u0308",
+    doublecode: "\u200b\u1dcd",
     valid: "vowel",
     type: "vowel",
     ipa: true,
@@ -79,6 +81,7 @@ export const annotations: annotationsType = {
   iotted: {
     mark: "one dots above",
     unicode: "\u0307",
+    doublecode: "\u200b\u0307",
     valid: "vowel",
     type: "vowel",
     ipa: true,
@@ -86,6 +89,7 @@ export const annotations: annotationsType = {
   round: {
     mark: "ring above",
     unicode: "\u030a",
+    doublecode: "\u200b\u030a",
     valid: "vowel",
     type: "vowel",
     ipa: true,
@@ -93,6 +97,7 @@ export const annotations: annotationsType = {
   opaque: {
     mark: "down arrow above",
     unicode: "\u030c",
+    doublecode: "\u200b\u030c",
     valid: "vowel",
     type: "vowel",
     ipa: true,
@@ -100,6 +105,7 @@ export const annotations: annotationsType = {
   idiphthong: {
     mark: "left dash above",
     unicode: "\u0300",
+    doublecode: "\u200b\u0300",
     valid: "vowel",
     type: "vowel",
     ipa: true,
@@ -107,6 +113,7 @@ export const annotations: annotationsType = {
   udiphthong: {
     mark: "right dash above",
     unicode: "\u0301",
+    doublecode: "\u200b\u0301",
     valid: "vowel",
     type: "vowel",
     ipa: true,
@@ -114,8 +121,9 @@ export const annotations: annotationsType = {
   schwa: {
     mark: "hook above",
     unicode: "\u0309", //might need to update given how similar it looks to 'plain' annotation
+    doublecode: "\u200b\u0309",
     valid: "letter",
-    type: "none",
+    type: "vowel",
   },
   w_semiconsonant: {
     mark: "w below",

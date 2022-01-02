@@ -101,7 +101,7 @@ describe("annotate - adds annotiona to get IPA", () => {
 
   test("exploitation", () => {
     let testWord: string = "exploitation";
-    let expectedAE: string = "e̓xplo\u200bitã̩t̻ỉo͓n";
+    let expectedAE: string = "e̓xplo\u200bitã̩t̺ỉo͓n";
 
     expect(annotate(testWord)).toEqual(expectedAE);
   });

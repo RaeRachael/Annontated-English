@@ -1,4 +1,4 @@
-import { mutateLetter } from "../../src/Annotator/annotator";
+import { mutateLetter } from "../../src/Annotator/mutations";
 import { AnnotatedLetter, annotation } from "../../src/Types/AnnotedLetter";
 
 describe("mutate - adds annotation to specific AE letter", () => {
@@ -39,7 +39,7 @@ describe("mutate - adds annotation to specific AE letter", () => {
         plainText: "t",
       },
     ];
-    // mutateLetter(testWordAE, 0, "pt");
+
     expect(mutateLetter(testWordAE, 0, "pt")).toEqual({
       letters: expectedAE,
       numberMutated: 1,
@@ -74,7 +74,7 @@ describe("mutate - adds annotation to specific AE letter", () => {
           plainText: "a",
         },
       ];
-      // mutateLetter(testWordAE, 0, testCase.ipa);
+
       expect(mutateLetter(testWordAE, 0, testCase.ipa)).toEqual({
         letters: expectedAE,
         numberMutated: 1,
@@ -109,7 +109,7 @@ describe("mutate - adds annotation to specific AE letter", () => {
           plainText: "e",
         },
       ];
-      // mutateLetter(testWordAE, 0, testCase.ipa)
+
       expect(mutateLetter(testWordAE, 0, testCase.ipa)).toEqual({
         letters: expectedAE,
         numberMutated: 1,
@@ -138,7 +138,7 @@ describe("mutate - adds annotation to specific AE letter", () => {
         plainText: "f",
       },
     ];
-    // mutateLetter(testWordAE, 0, "v");
+
     expect(mutateLetter(testWordAE, 0, "v")).toEqual({
       letters: expectedAE,
       numberMutated: 1,
@@ -173,7 +173,7 @@ describe("mutate - adds annotation to specific AE letter", () => {
           plainText: "s",
         },
       ];
-      // mutateLetter(testWordAE, 0, testCase.ipa);
+
       expect(mutateLetter(testWordAE, 0, testCase.ipa)).toEqual({
         letters: expectedAE,
         numberMutated: 1,

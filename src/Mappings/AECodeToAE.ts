@@ -1,44 +1,45 @@
 import { annotationForUnicode } from "../Helpers/IPAHelpers";
 import { makeAnnotatedLetter } from "../Helpers/letterHelpers";
 import { AnnotatedLetter, annotation } from "../Types/AnnotedLetter";
-import { annotations } from "./Annotations";
+// import { annotations } from "./Annotations";
 
-export function AnnotatedCodeToAnnotatedText(word: AnnotatedLetter[]): string {
-  for (var i = 0; i < word.length; i++) {
-    if (
-      word[i].plainText === "w" &&
-      // word[i].groupType === "consonant" &&
-      word[i].annotations.includes("w_semiconsonant")
-    ) {
-      // console.log("remove unneded w_semiconst", i, word);
-      word[i].annotations = [];
-      word[i].groupType = "consonant";
-    }
-    if (
-      word[i].plainText === "y" &&
-      // word[i].groupType === "consonant" &&
-      word[i].annotations.includes("y_semiconsonant")
-    ) {
-      word[i].annotations = [];
-      word[i].groupType = "consonant";
-    }
-    getAnnotatedText(word[i]);
-  }
-  // console.log(word);
-  return word.map((letter) => letter.annotatedString).join("");
-}
+// export function AnnotatedCodeToAnnotatedText(word: AnnotatedLetter[]): string {
+//   for (var i = 0; i < word.length; i++) {
+//     if (
+//       word[i].plainText === "w" &&
+//       // word[i].groupType === "consonant" &&
+//       word[i].annotations.includes("w_semiconsonant")
+//     ) {
+//       // console.log("remove unneded w_semiconst", i, word);
+//       word[i].annotations = [];
+//       word[i].groupType = "consonant";
+//     }
+//     if (
+//       word[i].plainText === "y" &&
+//       // word[i].groupType === "consonant" &&
+//       word[i].annotations.includes("y_semiconsonant")
+//     ) {
+//       word[i].annotations = [];
+//       word[i].groupType = "consonant";
+//     }
+//     getAnnotatedText(word[i]);
 
-function getAnnotatedText(letter: AnnotatedLetter): void {
-  let marks = letter.annotations
-    .map((mark) => annotations[mark].unicode)
-    .join("");
-  if (!letter.digraph) {
-    letter.annotatedString = letter.plainText + marks;
-  }
-  if (letter.digraph) {
-    letter.annotatedString = letter.plainText[0] + marks + letter.plainText[1];
-  }
-}
+//   }
+//   // console.log(word);
+//   return word.map((letter) => letter.annotatedString).join("");
+// }
+
+// function getAnnotatedText(letter: AnnotatedLetter): void {
+//   let marks = letter.annotations
+//     .map((mark) => annotations[mark].unicode)
+//     .join("");
+//   if (!letter.digraph) {
+//     letter.annotatedString = letter.plainText + marks;
+//   }
+//   if (letter.digraph) {
+//     letter.annotatedString = letter.plainText[0] + marks + letter.plainText[1];
+//   }
+// }
 
 export function AnnotatedTextToAnnotatedCode(word: string): AnnotatedLetter[] {
   let wordCode: AnnotatedLetter[] = [];

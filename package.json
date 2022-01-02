@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./__tests__/ --verbose",
+    "test": "jest ./__tests__/Annotation/AECodeToAE_test.ts --verbose",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test-react": "react-scripts test --env=jsdom",
