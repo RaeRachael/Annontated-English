@@ -7,9 +7,9 @@ export function AnnotatedCodeToAnnotatedText(
   word: AnnotatedLetter[],
   rules: rules = { annotateTwoVowels: true, silentFinalE: true }
 ): string {
-  console.log(word, "preprocess");
+  // console.log(word, "preprocess");
   word = postProcess(word, rules);
-  console.log(word, "postprocess");
+  // console.log(word, "postprocess");
   for (var i = 0; i < word.length; i++) {
     if (
       word[i].plainText === "w" &&
@@ -58,7 +58,10 @@ function getAnnotatedText(letter: AnnotatedLetter): void {
   }
 }
 
-function postProcess(word: AnnotatedLetter[], rules: rules): AnnotatedLetter[] {
+export function postProcess(
+  word: AnnotatedLetter[],
+  rules: rules
+): AnnotatedLetter[] {
   if (rules.annotateTwoVowels) {
     for (var i = 0; i + 1 < word.length; i++) {
       if (
@@ -79,18 +82,18 @@ function postProcess(word: AnnotatedLetter[], rules: rules): AnnotatedLetter[] {
         word.splice(i + 1, 1);
       }
     }
-    if (rules.silentFinalE) {
-      const finalLetter = word[word.length - 1];
-      console.log(finalLetter, "hi");
-      if (finalLetter.plainText === "e") {
-        if (finalLetter.annotations.length === 0) {
-          console.log("gerffrd");
-          finalLetter.annotations = ["plain"];
-        } else if (finalLetter.annotations.includes("silent")) {
-          finalLetter.annotations = finalLetter.annotations.filter((item) => {
-            return item !== "silent";
-          });
-        }
+  }
+  if (rules.silentFinalE) {
+    const finalLetter = word[word.length - 1];
+    // console.log(finalLetter, "hi");
+    if (finalLetter.plainText === "e") {
+      if (finalLetter.annotations.length === 0) {
+        // console.log("gerffrd");
+        finalLetter.annotations = ["plain"];
+      } else if (finalLetter.annotations.includes("silent")) {
+        finalLetter.annotations = finalLetter.annotations.filter((item) => {
+          return item !== "silent";
+        });
       }
     }
   }
