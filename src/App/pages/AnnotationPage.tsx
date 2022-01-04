@@ -1,6 +1,8 @@
 import React from "react";
 import AnnotatedText from "../components/AnnotatedText";
 import { annotate } from "../../Annotator/annotator";
+import { rules } from "../../Types/Rules";
+import SwitchInput from "../components/switchInput";
 
 // import './App.css';
 
@@ -8,6 +10,7 @@ interface ITestProps {}
 
 interface ITestState {
   text: string;
+  rules: rules;
 }
 
 export default class AnnotationPage extends React.Component<
@@ -19,6 +22,7 @@ export default class AnnotationPage extends React.Component<
 
     this.state = {
       text: "",
+      rules: { annotateTwoVowels: false, silentFinalE: false },
     };
 
     this.handleAnnotation = this.handleAnnotation.bind(this);
@@ -31,7 +35,7 @@ export default class AnnotationPage extends React.Component<
     text = text.trim();
     let words: string[] = text.split(" ");
     console.log(text, words, "input");
-    words = words.map((word) => annotate(word));
+    words = words.map((word) => annotate(word, this.state.rules));
     console.log(words.join(" "), words, "output");
     this.setState({ text: words.join(" ") });
   }
@@ -58,6 +62,33 @@ export default class AnnotationPage extends React.Component<
               Text:
               <textarea name="text" style={{ width: "80%", height: "20%" }} />
             </label>
+          </div>
+          <div className="RulesArea">
+            Rules
+            <SwitchInput
+              label="combine vowels when possible: "
+              checked={this.state.rules.annotateTwoVowels}
+              onChange={(newValue: boolean) =>
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: newValue,
+                    silentFinalE: this.state.rules.silentFinalE,
+                  },
+                })
+              }
+            ></SwitchInput>
+            <SwitchInput
+              label="default silent final 'e': "
+              checked={this.state.rules.silentFinalE}
+              onChange={(newValue: boolean) =>
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: newValue,
+                  },
+                })
+              }
+            ></SwitchInput>
           </div>
           <div>
             <input type="submit" value="Annotate" />
