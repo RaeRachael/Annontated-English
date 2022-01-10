@@ -8,6 +8,7 @@ describe("postProcess, annotateTwoVowels", () => {
       annotateTwoVowels: true,
       silentFinalE: false,
       silentFinalEx: false,
+      naturalFinalO: false,
     };
     test("natural", () => {
       let testWord: AnnotatedLetter[] = [
@@ -114,6 +115,7 @@ describe("postProcess, annotateTwoVowels", () => {
       annotateTwoVowels: false,
       silentFinalE: false,
       silentFinalEx: false,
+      naturalFinalO: false,
     };
     test("natural", () => {
       let testWord: AnnotatedLetter[] = [

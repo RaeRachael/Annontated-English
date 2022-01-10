@@ -9,6 +9,7 @@ export function AnnotatedCodeToAnnotatedText(
     annotateTwoVowels: true,
     silentFinalE: true,
     silentFinalEx: false,
+    naturalFinalO: false,
   }
 ): string {
   // console.log(word, "preprocess");
@@ -88,11 +89,9 @@ export function postProcess(
     }
   }
   if (rules.silentFinalE) {
-    const finalLetter = word[word.length - 1];
-    // console.log(finalLetter, "hi");
+    const finalLetter: AnnotatedLetter = word[word.length - 1];
     if (finalLetter.plainText === "e") {
       if (finalLetter.annotations.length === 0) {
-        // console.log("gerffrd");
         finalLetter.annotations = ["plain"];
       } else if (finalLetter.annotations.includes("silent")) {
         finalLetter.annotations = finalLetter.annotations.filter((item) => {
@@ -104,20 +103,29 @@ export function postProcess(
   if (rules.silentFinalEx && word.length > 1) {
     const sencondFinalLetter: AnnotatedLetter = word[word.length - 2];
     const finalLetter: AnnotatedLetter = word[word.length - 1];
-    // console.log(finalLetter, "hi");
     if (
       sencondFinalLetter.plainText === "e" &&
       ["d", "s"].includes(finalLetter.plainText)
     ) {
       if (sencondFinalLetter.annotations.length === 0) {
-        // console.log("gerffrd");
         sencondFinalLetter.annotations = ["plain"];
       } else if (sencondFinalLetter.annotations.includes("silent")) {
-        sencondFinalLetter.annotations = finalLetter.annotations.filter(
+        sencondFinalLetter.annotations = sencondFinalLetter.annotations.filter(
           (item) => {
             return item !== "silent";
           }
         );
+      }
+    }
+  }
+  if (rules.naturalFinalO) {
+    const finalLetter: AnnotatedLetter = word[word.length - 1];
+    if (finalLetter.plainText === "o") {
+      if (
+        finalLetter.annotations.length === 1 &&
+        finalLetter.annotations[0] === "natural"
+      ) {
+        finalLetter.annotations = [];
       }
     }
   }

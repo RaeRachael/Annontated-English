@@ -8,6 +8,7 @@ describe("postProcess, final silent e", () => {
       annotateTwoVowels: false,
       silentFinalE: true,
       silentFinalEx: true,
+      naturalFinalO: false,
     };
     test("case to silent final e(d)", () => {
       let testWord: AnnotatedLetter[] = [
@@ -179,6 +180,7 @@ describe("postProcess, final silent e", () => {
       annotateTwoVowels: false,
       silentFinalE: false,
       silentFinalEx: false,
+      naturalFinalO: false,
     };
     test("case to silent final e(d)", () => {
       let testWord: AnnotatedLetter[] = [

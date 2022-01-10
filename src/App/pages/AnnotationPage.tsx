@@ -26,6 +26,7 @@ export default class AnnotationPage extends React.Component<
         annotateTwoVowels: false,
         silentFinalE: false,
         silentFinalEx: false,
+        naturalFinalO: false,
       },
     };
 
@@ -91,6 +92,7 @@ export default class AnnotationPage extends React.Component<
                     annotateTwoVowels: newValue,
                     silentFinalE: this.state.rules.silentFinalE,
                     silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
                   },
                 })
               }
@@ -104,6 +106,7 @@ export default class AnnotationPage extends React.Component<
                     annotateTwoVowels: this.state.rules.annotateTwoVowels,
                     silentFinalE: newValue,
                     silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
                   },
                 })
               }
@@ -112,7 +115,6 @@ export default class AnnotationPage extends React.Component<
               label="default silent final 'e(d/s)': "
               checked={this.state.rules.silentFinalEx}
               onChange={(newValue: boolean) => {
-                console.log(newValue, this.state.rules);
                 this.setState({
                   rules: {
                     annotateTwoVowels: this.state.rules.annotateTwoVowels,
@@ -120,9 +122,24 @@ export default class AnnotationPage extends React.Component<
                       ? true
                       : this.state.rules.silentFinalE,
                     silentFinalEx: newValue,
+                    naturalFinalO: this.state.rules.naturalFinalO,
                   },
                 });
               }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default natural final 'o': "
+              checked={this.state.rules.naturalFinalO}
+              onChange={(newValue: boolean) =>
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: newValue,
+                  },
+                })
+              }
             ></SwitchInput>
           </div>
           <div>
