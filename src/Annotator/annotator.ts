@@ -13,7 +13,11 @@ import { rules } from "../Types/Rules";
 // const isAnnotation = (x: any): x is annotation => Annotation.includes(x);
 export function annotate(
   plainText: string,
-  rules: rules = { annotateTwoVowels: false, silentFinalE: false }
+  rules: rules = {
+    annotateTwoVowels: false,
+    silentFinalE: false,
+    silentFinalEx: false,
+  }
 ) {
   const ipaNeeded = getIPAForText(plainText);
   // console.log(ipaNeeded, "needed");

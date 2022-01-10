@@ -5,7 +5,11 @@ import { makeAnnotatedLetter } from "../Helpers/letterHelpers";
 
 export function AnnotatedCodeToAnnotatedText(
   word: AnnotatedLetter[],
-  rules: rules = { annotateTwoVowels: true, silentFinalE: true }
+  rules: rules = {
+    annotateTwoVowels: true,
+    silentFinalE: true,
+    silentFinalEx: false,
+  }
 ): string {
   // console.log(word, "preprocess");
   word = postProcess(word, rules);
@@ -94,6 +98,26 @@ export function postProcess(
         finalLetter.annotations = finalLetter.annotations.filter((item) => {
           return item !== "silent";
         });
+      }
+    }
+  }
+  if (rules.silentFinalE && word.length > 1) {
+    const sencondFinalLetter: AnnotatedLetter = word[word.length - 2];
+    const finalLetter: AnnotatedLetter = word[word.length - 1];
+    // console.log(finalLetter, "hi");
+    if (
+      sencondFinalLetter.plainText === "e" &&
+      ["d", "s"].includes(finalLetter.plainText)
+    ) {
+      if (sencondFinalLetter.annotations.length === 0) {
+        // console.log("gerffrd");
+        sencondFinalLetter.annotations = ["plain"];
+      } else if (sencondFinalLetter.annotations.includes("silent")) {
+        sencondFinalLetter.annotations = finalLetter.annotations.filter(
+          (item) => {
+            return item !== "silent";
+          }
+        );
       }
     }
   }

@@ -22,7 +22,11 @@ export default class AnnotationPage extends React.Component<
 
     this.state = {
       text: "",
-      rules: { annotateTwoVowels: false, silentFinalE: false },
+      rules: {
+        annotateTwoVowels: false,
+        silentFinalE: false,
+        silentFinalEx: false,
+      },
     };
 
     this.handleAnnotation = this.handleAnnotation.bind(this);
@@ -65,6 +69,19 @@ export default class AnnotationPage extends React.Component<
           </div>
           <div className="RulesArea">
             Rules
+            {/* <SwitchInput
+              label="use default pronouncation of consonants: "
+              checked={this.state.rules.annotateTwoVowels}
+              onChange={(newValue: boolean) =>
+                this.setState({
+                  rules: {
+                    defaultConsonantPronounce: newValue,
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                  },
+                })
+              }
+            ></SwitchInput> */}
             <SwitchInput
               label="combine vowels when possible: "
               checked={this.state.rules.annotateTwoVowels}
@@ -73,6 +90,7 @@ export default class AnnotationPage extends React.Component<
                   rules: {
                     annotateTwoVowels: newValue,
                     silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
                   },
                 })
               }
@@ -85,6 +103,22 @@ export default class AnnotationPage extends React.Component<
                   rules: {
                     annotateTwoVowels: this.state.rules.annotateTwoVowels,
                     silentFinalE: newValue,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                  },
+                })
+              }
+            ></SwitchInput>
+            <SwitchInput
+              label="default silent final 'e(d/s)': "
+              checked={this.state.rules.silentFinalE}
+              onChange={(newValue: boolean) =>
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: newValue
+                      ? true
+                      : this.state.rules.silentFinalE,
+                    silentFinalEx: newValue,
                   },
                 })
               }
