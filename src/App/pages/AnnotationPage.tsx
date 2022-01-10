@@ -110,8 +110,9 @@ export default class AnnotationPage extends React.Component<
             ></SwitchInput>
             <SwitchInput
               label="default silent final 'e(d/s)': "
-              checked={this.state.rules.silentFinalE}
-              onChange={(newValue: boolean) =>
+              checked={this.state.rules.silentFinalEx}
+              onChange={(newValue: boolean) => {
+                console.log(newValue, this.state.rules);
                 this.setState({
                   rules: {
                     annotateTwoVowels: this.state.rules.annotateTwoVowels,
@@ -120,8 +121,8 @@ export default class AnnotationPage extends React.Component<
                       : this.state.rules.silentFinalE,
                     silentFinalEx: newValue,
                   },
-                })
-              }
+                });
+              }}
             ></SwitchInput>
           </div>
           <div>

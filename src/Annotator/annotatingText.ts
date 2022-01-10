@@ -101,7 +101,7 @@ export function postProcess(
       }
     }
   }
-  if (rules.silentFinalE && word.length > 1) {
+  if (rules.silentFinalEx && word.length > 1) {
     const sencondFinalLetter: AnnotatedLetter = word[word.length - 2];
     const finalLetter: AnnotatedLetter = word[word.length - 1];
     // console.log(finalLetter, "hi");
