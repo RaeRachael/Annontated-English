@@ -3,4 +3,5 @@ export type rules = {
   silentFinalE: boolean;
   silentFinalEx: boolean;
   naturalFinalO: boolean;
+  naturalFinalOx: boolean;
 };

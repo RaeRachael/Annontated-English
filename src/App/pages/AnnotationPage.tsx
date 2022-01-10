@@ -27,6 +27,7 @@ export default class AnnotationPage extends React.Component<
         silentFinalE: false,
         silentFinalEx: false,
         naturalFinalO: false,
+        naturalFinalOx: false,
       },
     };
 
@@ -70,19 +71,6 @@ export default class AnnotationPage extends React.Component<
           </div>
           <div className="RulesArea">
             Rules
-            {/* <SwitchInput
-              label="use default pronouncation of consonants: "
-              checked={this.state.rules.annotateTwoVowels}
-              onChange={(newValue: boolean) =>
-                this.setState({
-                  rules: {
-                    defaultConsonantPronounce: newValue,
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                  },
-                })
-              }
-            ></SwitchInput> */}
             <SwitchInput
               label="combine vowels when possible: "
               checked={this.state.rules.annotateTwoVowels}
@@ -93,6 +81,7 @@ export default class AnnotationPage extends React.Component<
                     silentFinalE: this.state.rules.silentFinalE,
                     silentFinalEx: this.state.rules.silentFinalEx,
                     naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
                   },
                 })
               }
@@ -107,6 +96,7 @@ export default class AnnotationPage extends React.Component<
                     silentFinalE: newValue,
                     silentFinalEx: this.state.rules.silentFinalEx,
                     naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
                   },
                 })
               }
@@ -123,6 +113,7 @@ export default class AnnotationPage extends React.Component<
                       : this.state.rules.silentFinalE,
                     silentFinalEx: newValue,
                     naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
                   },
                 });
               }}
@@ -137,9 +128,27 @@ export default class AnnotationPage extends React.Component<
                     silentFinalE: this.state.rules.silentFinalE,
                     silentFinalEx: this.state.rules.silentFinalEx,
                     naturalFinalO: newValue,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
                   },
                 })
               }
+            ></SwitchInput>
+            <SwitchInput
+              label="default natural final 'o(s/es)': "
+              checked={this.state.rules.naturalFinalOx}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: newValue
+                      ? true
+                      : this.state.rules.naturalFinalO,
+                    naturalFinalOx: newValue,
+                  },
+                });
+              }}
             ></SwitchInput>
           </div>
           <div>
@@ -149,6 +158,6 @@ export default class AnnotationPage extends React.Component<
 
         <AnnotatedText text={this.state.text} />
       </div>
-    ); // your code here
+    );
   }
 }

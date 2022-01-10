@@ -1,28 +1,29 @@
 import { postProcess } from "../../../../src/Annotator/annotatingText";
+import { vowels } from "../../../../src/Mappings/VowelPronouciation";
 import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
 import { rules } from "../../../../src/Types/Rules";
 
-describe("postProcess, final silent e", () => {
-  describe("rule used, make final e (d/s) not annotated if silent", () => {
+describe("postProcess, final natural 'o", () => {
+  describe("rule used, make final 'o(s/es)' not annotated if natural", () => {
     let rules: rules = {
       annotateTwoVowels: false,
-      silentFinalE: true,
-      silentFinalEx: true,
+      silentFinalE: false,
+      silentFinalEx: false,
       naturalFinalO: false,
-      naturalFinalOx: false,
+      naturalFinalOx: true,
     };
-    test("case to silent final e(d)", () => {
+    test("case natural final 'o(s)' ", () => {
       let testWord: AnnotatedLetter[] = [
         {
-          plainText: "e",
-          annotations: ["silent"],
+          plainText: "o",
+          annotations: ["natural"],
           annotatedString: "",
           ipa: "",
           digraph: false,
           groupType: "vowel",
         },
         {
-          plainText: "d",
+          plainText: "s",
           annotations: [],
           annotatedString: "",
           ipa: "",
@@ -37,26 +38,26 @@ describe("postProcess, final silent e", () => {
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "e",
+          plainText: "o",
         },
         {
-          annotatedString: "",
+          plainText: "s",
           annotations: [],
+          annotatedString: "",
+          ipa: "",
           digraph: false,
           groupType: "consonant",
-          ipa: "",
-          plainText: "d",
         },
       ];
       let output = postProcess(testWord, rules);
       expect(output).toEqual(expectedOutput);
     });
 
-    test("case to silent final e(s)", () => {
+    test("case not natural 'o(s)'", () => {
       let testWord: AnnotatedLetter[] = [
         {
-          plainText: "e",
-          annotations: ["silent"],
+          plainText: "o",
+          annotations: ["round"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -74,27 +75,35 @@ describe("postProcess, final silent e", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: [],
+          annotations: ["round"],
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "e",
+          plainText: "o",
         },
         {
-          annotatedString: "",
+          plainText: "s",
           annotations: [],
+          annotatedString: "",
+          ipa: "",
           digraph: false,
           groupType: "consonant",
-          ipa: "",
-          plainText: "s",
         },
       ];
       let output = postProcess(testWord, rules);
       expect(output).toEqual(expectedOutput);
     });
 
-    test("add plain annotation if not silent e(d)", () => {
+    test("case natural final 'o(es)' ", () => {
       let testWord: AnnotatedLetter[] = [
+        {
+          plainText: "o",
+          annotations: ["natural"],
+          annotatedString: "",
+          ipa: "",
+          digraph: false,
+          groupType: "vowel",
+        },
         {
           plainText: "e",
           annotations: [],
@@ -104,7 +113,7 @@ describe("postProcess, final silent e", () => {
           groupType: "vowel",
         },
         {
-          plainText: "d",
+          plainText: "s",
           annotations: [],
           annotatedString: "",
           ipa: "",
@@ -115,27 +124,43 @@ describe("postProcess, final silent e", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["plain"],
+          annotations: [],
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "e",
+          plainText: "o",
         },
         {
-          annotatedString: "",
+          plainText: "e",
           annotations: [],
+          annotatedString: "",
+          ipa: "",
+          digraph: false,
+          groupType: "vowel",
+        },
+        {
+          plainText: "s",
+          annotations: [],
+          annotatedString: "",
+          ipa: "",
           digraph: false,
           groupType: "consonant",
-          ipa: "",
-          plainText: "d",
         },
       ];
       let output = postProcess(testWord, rules);
       expect(output).toEqual(expectedOutput);
     });
 
-    test("add plain annotation if not silent e(s)", () => {
+    test("case not natural 'o(es)'", () => {
       let testWord: AnnotatedLetter[] = [
+        {
+          plainText: "o",
+          annotations: ["round"],
+          annotatedString: "",
+          ipa: "",
+          digraph: false,
+          groupType: "vowel",
+        },
         {
           plainText: "e",
           annotations: [],
@@ -156,19 +181,27 @@ describe("postProcess, final silent e", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["plain"],
+          annotations: ["round"],
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "e",
+          plainText: "o",
         },
         {
-          annotatedString: "",
+          plainText: "e",
           annotations: [],
+          annotatedString: "",
+          ipa: "",
+          digraph: false,
+          groupType: "vowel",
+        },
+        {
+          plainText: "s",
+          annotations: [],
+          annotatedString: "",
+          ipa: "",
           digraph: false,
           groupType: "consonant",
-          ipa: "",
-          plainText: "s",
         },
       ];
       let output = postProcess(testWord, rules);
@@ -184,18 +217,18 @@ describe("postProcess, final silent e", () => {
       naturalFinalO: false,
       naturalFinalOx: false,
     };
-    test("case to silent final e(d)", () => {
+    test("case natural final 'o(s)' ", () => {
       let testWord: AnnotatedLetter[] = [
         {
-          plainText: "e",
-          annotations: ["silent"],
+          plainText: "o",
+          annotations: ["natural"],
           annotatedString: "",
           ipa: "",
           digraph: false,
           groupType: "vowel",
         },
         {
-          plainText: "d",
+          plainText: "s",
           annotations: [],
           annotatedString: "",
           ipa: "",
@@ -206,30 +239,30 @@ describe("postProcess, final silent e", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["silent"],
+          annotations: ["natural"],
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "e",
+          plainText: "o",
         },
         {
-          annotatedString: "",
+          plainText: "s",
           annotations: [],
+          annotatedString: "",
+          ipa: "",
           digraph: false,
           groupType: "consonant",
-          ipa: "",
-          plainText: "d",
         },
       ];
       let output = postProcess(testWord, rules);
       expect(output).toEqual(expectedOutput);
     });
 
-    test("case to silent final e(s)", () => {
+    test("case not natural", () => {
       let testWord: AnnotatedLetter[] = [
         {
-          plainText: "e",
-          annotations: ["silent"],
+          plainText: "o",
+          annotations: ["round"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -247,75 +280,11 @@ describe("postProcess, final silent e", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["silent"],
+          annotations: ["round"],
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "e",
-        },
-        {
-          annotatedString: "",
-          annotations: [],
-          digraph: false,
-          groupType: "consonant",
-          ipa: "",
-          plainText: "s",
-        },
-      ];
-      let output = postProcess(testWord, rules);
-      expect(output).toEqual(expectedOutput);
-    });
-
-    test("add plain annotation if not silent e(d)", () => {
-      let testWord: AnnotatedLetter[] = [
-        {
-          plainText: "e",
-          annotations: [],
-          annotatedString: "",
-          ipa: "",
-          digraph: false,
-          groupType: "vowel",
-        },
-        {
-          plainText: "d",
-          annotations: [],
-          annotatedString: "",
-          ipa: "",
-          digraph: false,
-          groupType: "consonant",
-        },
-      ];
-      let expectedOutput: AnnotatedLetter[] = [
-        {
-          annotatedString: "",
-          annotations: [],
-          digraph: false,
-          groupType: "vowel",
-          ipa: "",
-          plainText: "e",
-        },
-        {
-          annotatedString: "",
-          annotations: [],
-          digraph: false,
-          groupType: "consonant",
-          ipa: "",
-          plainText: "d",
-        },
-      ];
-      let output = postProcess(testWord, rules);
-      expect(output).toEqual(expectedOutput);
-    });
-
-    test("add plain annotation if not silent e(s)", () => {
-      let testWord: AnnotatedLetter[] = [
-        {
-          plainText: "e",
-          annotations: [],
-          annotatedString: "",
-          ipa: "",
-          digraph: false,
-          groupType: "vowel",
+          plainText: "o",
         },
         {
           plainText: "s",
@@ -324,24 +293,6 @@ describe("postProcess, final silent e", () => {
           ipa: "",
           digraph: false,
           groupType: "consonant",
-        },
-      ];
-      let expectedOutput: AnnotatedLetter[] = [
-        {
-          annotatedString: "",
-          annotations: [],
-          digraph: false,
-          groupType: "vowel",
-          ipa: "",
-          plainText: "e",
-        },
-        {
-          annotatedString: "",
-          annotations: [],
-          digraph: false,
-          groupType: "consonant",
-          ipa: "",
-          plainText: "s",
         },
       ];
       let output = postProcess(testWord, rules);

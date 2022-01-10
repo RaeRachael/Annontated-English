@@ -10,6 +10,7 @@ export function AnnotatedCodeToAnnotatedText(
     silentFinalE: true,
     silentFinalEx: false,
     naturalFinalO: false,
+    naturalFinalOx: false,
   }
 ): string {
   // console.log(word, "preprocess");
@@ -126,6 +127,33 @@ export function postProcess(
         finalLetter.annotations[0] === "natural"
       ) {
         finalLetter.annotations = [];
+      }
+    }
+  }
+  if (rules.naturalFinalOx && word.length > 1) {
+    const sencondFinalLetter: AnnotatedLetter = word[word.length - 2];
+    const finalLetter: AnnotatedLetter = word[word.length - 1];
+    if (
+      sencondFinalLetter.plainText[0] === "o" &&
+      finalLetter.plainText === "s"
+    ) {
+      if (
+        sencondFinalLetter.annotations.length === 1 &&
+        sencondFinalLetter.annotations[0] === "natural"
+      ) {
+        sencondFinalLetter.annotations = [];
+      }
+    } else if (
+      word.length > 2 &&
+      word[word.length - 3].plainText === "o" &&
+      sencondFinalLetter.plainText === "e" &&
+      finalLetter.plainText === "s"
+    ) {
+      if (
+        word[word.length - 3].annotations.length === 1 &&
+        word[word.length - 3].annotations[0] === "natural"
+      ) {
+        word[word.length - 3].annotations = [];
       }
     }
   }

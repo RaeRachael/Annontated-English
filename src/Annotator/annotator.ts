@@ -18,6 +18,7 @@ export function annotate(
     silentFinalE: false,
     silentFinalEx: false,
     naturalFinalO: false,
+    naturalFinalOx: false,
   }
 ) {
   const ipaNeeded = getIPAForText(plainText);
