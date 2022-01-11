@@ -1,16 +1,11 @@
 import { postProcess } from "../../../../src/Annotator/annotatingText";
 import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { rules } from "../../../../src/Types/Rules";
+import { rules, defaultRules } from "../../../../src/Types/Rules";
 
 describe("postProcess, final silent e", () => {
   describe("rule used, make final e (d/s) not annotated if silent", () => {
-    let rules: rules = {
-      annotateTwoVowels: false,
-      silentFinalE: true,
-      silentFinalEx: true,
-      naturalFinalO: false,
-      naturalFinalOx: false,
-    };
+    let rules: rules = JSON.parse(JSON.stringify(defaultRules));
+    rules.silentFinalEx = true;
     test("case to silent final e(d)", () => {
       let testWord: AnnotatedLetter[] = [
         {
@@ -177,13 +172,8 @@ describe("postProcess, final silent e", () => {
   });
 
   describe("rule not used, no edits", () => {
-    let rules: rules = {
-      annotateTwoVowels: false,
-      silentFinalE: false,
-      silentFinalEx: false,
-      naturalFinalO: false,
-      naturalFinalOx: false,
-    };
+    let rules: rules = JSON.parse(JSON.stringify(defaultRules));
+    rules.silentFinalEx = false;
     test("case to silent final e(d)", () => {
       let testWord: AnnotatedLetter[] = [
         {

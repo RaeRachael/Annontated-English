@@ -2,15 +2,15 @@ import { postProcess } from "../../../../src/Annotator/annotatingText";
 import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
 import { rules, defaultRules } from "../../../../src/Types/Rules";
 
-describe("postProcess, final silent e", () => {
-  describe("rule used, make final e not annotated if silent", () => {
+describe("postProcess, default vowel E", () => {
+  describe("rule used, make schwa 'e' unannotated", () => {
     let rules: rules = JSON.parse(JSON.stringify(defaultRules));
-    rules.silentFinalE = true;
-    test("case to silent final e", () => {
+    rules.defaultVowelE = true;
+    test("case to schwa 'e'", () => {
       let testWord: AnnotatedLetter[] = [
         {
           plainText: "e",
-          annotations: ["silent"],
+          annotations: ["schwa"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -31,11 +31,11 @@ describe("postProcess, final silent e", () => {
       expect(output).toEqual(expectedOutput);
     });
 
-    test("add plain annotation if not silent", () => {
+    test("case not schwa 'e'", () => {
       let testWord: AnnotatedLetter[] = [
         {
           plainText: "e",
-          annotations: [],
+          annotations: ["plain"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -59,12 +59,12 @@ describe("postProcess, final silent e", () => {
 
   describe("rule not used, no edits", () => {
     let rules: rules = JSON.parse(JSON.stringify(defaultRules));
-    rules.silentFinalE = false;
-    test("case silent final e", () => {
+    rules.defaultVowelE = false;
+    test("case to schwa 'e'", () => {
       let testWord: AnnotatedLetter[] = [
         {
           plainText: "e",
-          annotations: ["silent"],
+          annotations: ["schwa"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -74,7 +74,7 @@ describe("postProcess, final silent e", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["silent"],
+          annotations: ["schwa"],
           digraph: false,
           groupType: "vowel",
           ipa: "",
@@ -85,11 +85,11 @@ describe("postProcess, final silent e", () => {
       expect(output).toEqual(expectedOutput);
     });
 
-    test("case final e not silent", () => {
+    test("case not schwa 'e'", () => {
       let testWord: AnnotatedLetter[] = [
         {
           plainText: "e",
-          annotations: [],
+          annotations: ["plain"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -99,7 +99,7 @@ describe("postProcess, final silent e", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: [],
+          annotations: ["plain"],
           digraph: false,
           groupType: "vowel",
           ipa: "",

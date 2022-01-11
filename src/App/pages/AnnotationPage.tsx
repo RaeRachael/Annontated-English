@@ -1,7 +1,7 @@
 import React from "react";
 import AnnotatedText from "../components/AnnotatedText";
 import { annotate } from "../../Annotator/annotator";
-import { rules } from "../../Types/Rules";
+import { rules, defaultRules } from "../../Types/Rules";
 import SwitchInput from "../components/switchInput";
 
 // import './App.css';
@@ -11,6 +11,7 @@ interface ITestProps {}
 interface ITestState {
   text: string;
   rules: rules;
+  defaultVowels: boolean;
 }
 
 export default class AnnotationPage extends React.Component<
@@ -22,13 +23,8 @@ export default class AnnotationPage extends React.Component<
 
     this.state = {
       text: "",
-      rules: {
-        annotateTwoVowels: false,
-        silentFinalE: false,
-        silentFinalEx: false,
-        naturalFinalO: false,
-        naturalFinalOx: false,
-      },
+      rules: defaultRules,
+      defaultVowels: false,
     };
 
     this.handleAnnotation = this.handleAnnotation.bind(this);
@@ -58,9 +54,6 @@ export default class AnnotationPage extends React.Component<
             };
             console.log(target);
             this.handleAnnotation(target.text.value);
-            // let AEtext = annotate(target.text.value);
-            // this.setState({ text: AEtext });
-            // console.log(AEtext);
           }}
         >
           <div>
@@ -82,6 +75,11 @@ export default class AnnotationPage extends React.Component<
                     silentFinalEx: this.state.rules.silentFinalEx,
                     naturalFinalO: this.state.rules.naturalFinalO,
                     naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelU,
                   },
                 })
               }
@@ -97,6 +95,11 @@ export default class AnnotationPage extends React.Component<
                     silentFinalEx: this.state.rules.silentFinalEx,
                     naturalFinalO: this.state.rules.naturalFinalO,
                     naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelU,
                   },
                 })
               }
@@ -114,6 +117,11 @@ export default class AnnotationPage extends React.Component<
                     silentFinalEx: newValue,
                     naturalFinalO: this.state.rules.naturalFinalO,
                     naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelU,
                   },
                 });
               }}
@@ -129,6 +137,11 @@ export default class AnnotationPage extends React.Component<
                     silentFinalEx: this.state.rules.silentFinalEx,
                     naturalFinalO: newValue,
                     naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelU,
                   },
                 })
               }
@@ -146,7 +159,150 @@ export default class AnnotationPage extends React.Component<
                       ? true
                       : this.state.rules.naturalFinalO,
                     naturalFinalOx: newValue,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelU,
                   },
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default vowels: "
+              checked={this.state.defaultVowels}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: newValue,
+                    defaultVowelE: newValue,
+                    defaultVowelYI: newValue,
+                    defaultVowelO: newValue,
+                    defaultVowelU: newValue,
+                  },
+                });
+                this.setState({
+                  defaultVowels: newValue,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default schwa 'a': "
+              checked={this.state.rules.defaultVowelA}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: newValue,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelU,
+                  },
+                });
+                this.setState({
+                  defaultVowels: false,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default schwa 'e': "
+              checked={this.state.rules.defaultVowelE}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: newValue,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelU,
+                  },
+                });
+                this.setState({
+                  defaultVowels: false,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default plain 'i/y': "
+              checked={this.state.rules.defaultVowelYI}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: newValue,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelU,
+                  },
+                });
+                this.setState({
+                  defaultVowels: false,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default schwa 'o': "
+              checked={this.state.rules.defaultVowelO}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: newValue,
+                    defaultVowelU: this.state.rules.defaultVowelU,
+                  },
+                });
+                this.setState({
+                  defaultVowels: false,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default schwa 'u': "
+              checked={this.state.rules.defaultVowelU}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelU,
+                    defaultVowelU: newValue,
+                  },
+                });
+                this.setState({
+                  defaultVowels: false,
                 });
               }}
             ></SwitchInput>

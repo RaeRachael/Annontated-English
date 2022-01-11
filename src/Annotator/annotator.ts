@@ -8,19 +8,10 @@ import { digraphs } from "../Mappings/Digraphs";
 import { vowels } from "../Mappings/VowelPronouciation";
 import { AnnotatedLetter } from "../Types/AnnotedLetter";
 import { mutateLetter } from "./mutations";
-import { rules } from "../Types/Rules";
+import { defaultRules, rules } from "../Types/Rules";
 
 // const isAnnotation = (x: any): x is annotation => Annotation.includes(x);
-export function annotate(
-  plainText: string,
-  rules: rules = {
-    annotateTwoVowels: false,
-    silentFinalE: false,
-    silentFinalEx: false,
-    naturalFinalO: false,
-    naturalFinalOx: false,
-  }
-) {
+export function annotate(plainText: string, rules: rules = defaultRules) {
   const ipaNeeded = getIPAForText(plainText);
   // console.log(ipaNeeded, "needed");
   const lettersAE = buildAECodeForText(plainText);

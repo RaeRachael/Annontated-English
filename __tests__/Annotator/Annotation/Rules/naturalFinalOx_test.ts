@@ -1,17 +1,11 @@
 import { postProcess } from "../../../../src/Annotator/annotatingText";
-import { vowels } from "../../../../src/Mappings/VowelPronouciation";
 import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { rules } from "../../../../src/Types/Rules";
+import { rules, defaultRules } from "../../../../src/Types/Rules";
 
 describe("postProcess, final natural 'o", () => {
   describe("rule used, make final 'o(s/es)' not annotated if natural", () => {
-    let rules: rules = {
-      annotateTwoVowels: false,
-      silentFinalE: false,
-      silentFinalEx: false,
-      naturalFinalO: false,
-      naturalFinalOx: true,
-    };
+    let rules: rules = JSON.parse(JSON.stringify(defaultRules));
+    rules.naturalFinalOx = true;
     test("case natural final 'o(s)' ", () => {
       let testWord: AnnotatedLetter[] = [
         {
@@ -210,13 +204,8 @@ describe("postProcess, final natural 'o", () => {
   });
 
   describe("rule not used, no edits", () => {
-    let rules: rules = {
-      annotateTwoVowels: false,
-      silentFinalE: false,
-      silentFinalEx: false,
-      naturalFinalO: false,
-      naturalFinalOx: false,
-    };
+    let rules: rules = defaultRules;
+    rules.naturalFinalOx = false;
     test("case natural final 'o(s)' ", () => {
       let testWord: AnnotatedLetter[] = [
         {

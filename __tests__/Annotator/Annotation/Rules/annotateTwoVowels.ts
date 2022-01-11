@@ -1,16 +1,11 @@
 import { postProcess } from "../../../../src/Annotator/annotatingText";
 import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { rules } from "../../../../src/Types/Rules";
+import { defaultRules, rules } from "../../../../src/Types/Rules";
 
 describe("postProcess, annotateTwoVowels", () => {
   describe("rule used, make the second letter the same annotation if silent", () => {
-    let rules: rules = {
-      annotateTwoVowels: true,
-      silentFinalE: false,
-      silentFinalEx: false,
-      naturalFinalO: false,
-      naturalFinalOx: false,
-    };
+    let rules: rules = JSON.parse(JSON.stringify(defaultRules));
+    rules.annotateTwoVowels = true;
     test("natural", () => {
       let testWord: AnnotatedLetter[] = [
         {
@@ -112,13 +107,8 @@ describe("postProcess, annotateTwoVowels", () => {
   });
 
   describe("rule not used, no edits", () => {
-    let rules: rules = {
-      annotateTwoVowels: false,
-      silentFinalE: false,
-      silentFinalEx: false,
-      naturalFinalO: false,
-      naturalFinalOx: false,
-    };
+    let rules: rules = JSON.parse(JSON.stringify(defaultRules));
+    rules.annotateTwoVowels = false;
     test("natural", () => {
       let testWord: AnnotatedLetter[] = [
         {

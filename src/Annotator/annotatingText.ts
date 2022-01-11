@@ -1,18 +1,12 @@
 import { AnnotatedLetter } from "../Types/AnnotedLetter";
 import { annotations } from "../Mappings/Annotations";
-import { rules } from "../Types/Rules";
+import { defaultRules, rules } from "../Types/Rules";
 import { makeAnnotatedLetter } from "../Helpers/letterHelpers";
 
 export function AnnotatedCodeToAnnotatedText(
   word: AnnotatedLetter[],
-  rules: rules = {
-    annotateTwoVowels: true,
-    silentFinalE: true,
-    silentFinalEx: false,
-    naturalFinalO: false,
-    naturalFinalOx: false,
-  }
-): string {
+  rules: rules = defaultRules
+) {
   // console.log(word, "preprocess");
   word = postProcess(word, rules);
   // console.log(word, "postprocess");
@@ -156,6 +150,61 @@ export function postProcess(
         word[word.length - 3].annotations = [];
       }
     }
+  }
+  if (rules.defaultVowelA) {
+    word.forEach((letter) => {
+      if (
+        letter.plainText === "a" &&
+        letter.annotations.length === 1 &&
+        letter.annotations[0] === "schwa"
+      ) {
+        letter.annotations = [];
+      }
+    });
+  }
+  if (rules.defaultVowelE) {
+    word.forEach((letter) => {
+      if (
+        letter.plainText === "e" &&
+        letter.annotations.length === 1 &&
+        letter.annotations[0] === "schwa"
+      ) {
+        letter.annotations = [];
+      }
+    });
+  }
+  if (rules.defaultVowelYI) {
+    word.forEach((letter) => {
+      if (
+        ["y", "i"].includes(letter.plainText) &&
+        letter.annotations.length === 1 &&
+        letter.annotations[0] === "plain"
+      ) {
+        letter.annotations = [];
+      }
+    });
+  }
+  if (rules.defaultVowelO) {
+    word.forEach((letter) => {
+      if (
+        letter.plainText === "o" &&
+        letter.annotations.length === 1 &&
+        letter.annotations[0] === "schwa"
+      ) {
+        letter.annotations = [];
+      }
+    });
+  }
+  if (rules.defaultVowelU) {
+    word.forEach((letter) => {
+      if (
+        letter.plainText === "u" &&
+        letter.annotations.length === 1 &&
+        letter.annotations[0] === "schwa"
+      ) {
+        letter.annotations = [];
+      }
+    });
   }
   return word;
 }
