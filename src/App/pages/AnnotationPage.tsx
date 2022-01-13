@@ -80,6 +80,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: this.state.rules.defaultVowelYI,
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 })
               }
@@ -100,6 +101,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: this.state.rules.defaultVowelYI,
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 })
               }
@@ -122,6 +124,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: this.state.rules.defaultVowelYI,
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 });
               }}
@@ -142,6 +145,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: this.state.rules.defaultVowelYI,
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 })
               }
@@ -164,6 +168,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: this.state.rules.defaultVowelYI,
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 });
               }}
@@ -184,6 +189,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: newValue,
                     defaultVowelO: newValue,
                     defaultVowelU: newValue,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 });
                 this.setState({
@@ -207,6 +213,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: this.state.rules.defaultVowelYI,
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 });
                 this.setState({
@@ -230,6 +237,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: this.state.rules.defaultVowelYI,
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 });
                 this.setState({
@@ -253,6 +261,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: newValue,
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 });
                 this.setState({
@@ -276,6 +285,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelYI: this.state.rules.defaultVowelYI,
                     defaultVowelO: newValue,
                     defaultVowelU: this.state.rules.defaultVowelU,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
                   },
                 });
                 this.setState({
@@ -297,8 +307,33 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelA: this.state.rules.defaultVowelA,
                     defaultVowelE: this.state.rules.defaultVowelE,
                     defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelU,
+                    defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: newValue,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                  },
+                });
+                this.setState({
+                  defaultVowels: false,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default 'ng' as common 'n': "
+              checked={this.state.rules.defaultDigraphNG}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelO,
+                    defaultDigraphNG: newValue,
                   },
                 });
                 this.setState({

@@ -1,16 +1,16 @@
-import { postProcess } from "../../../../src/Annotator/annotatingText";
-import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { defaultRules, rules } from "../../../../src/Types/Rules";
+import { postProcess } from "../../../../../src/Annotator/annotatingText";
+import { AnnotatedLetter } from "../../../../../src/Types/AnnotedLetter";
+import { rules, defaultRules } from "../../../../../src/Types/Rules";
 
-describe("postProcess, final natural 'o", () => {
-  describe("rule used, make final 'o' not annotated if natural", () => {
+describe("postProcess, default vowel O", () => {
+  describe("rule used, make schwa 'o' unannotated", () => {
     let rules: rules = JSON.parse(JSON.stringify(defaultRules));
-    rules.naturalFinalO = true;
-    test("case to natural final 'o' ", () => {
+    rules.defaultVowelO = true;
+    test("case to schwa 'o'", () => {
       let testWord: AnnotatedLetter[] = [
         {
           plainText: "o",
-          annotations: ["natural"],
+          annotations: ["schwa"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -31,11 +31,11 @@ describe("postProcess, final natural 'o", () => {
       expect(output).toEqual(expectedOutput);
     });
 
-    test("case not natural", () => {
+    test("case not schwa 'o'", () => {
       let testWord: AnnotatedLetter[] = [
         {
           plainText: "o",
-          annotations: ["round"],
+          annotations: ["plain"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -45,7 +45,7 @@ describe("postProcess, final natural 'o", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["round"],
+          annotations: ["plain"],
           digraph: false,
           groupType: "vowel",
           ipa: "",
@@ -59,12 +59,12 @@ describe("postProcess, final natural 'o", () => {
 
   describe("rule not used, no edits", () => {
     let rules: rules = JSON.parse(JSON.stringify(defaultRules));
-    rules.naturalFinalO = false;
-    test("case to natural final 'o' ", () => {
+    rules.defaultVowelO = false;
+    test("case to schwa 'o'", () => {
       let testWord: AnnotatedLetter[] = [
         {
           plainText: "o",
-          annotations: ["natural"],
+          annotations: ["schwa"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -74,7 +74,7 @@ describe("postProcess, final natural 'o", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["natural"],
+          annotations: ["schwa"],
           digraph: false,
           groupType: "vowel",
           ipa: "",
@@ -85,11 +85,11 @@ describe("postProcess, final natural 'o", () => {
       expect(output).toEqual(expectedOutput);
     });
 
-    test("case not natural", () => {
+    test("case not schwa 'o'", () => {
       let testWord: AnnotatedLetter[] = [
         {
           plainText: "o",
-          annotations: ["round"],
+          annotations: ["plain"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -99,7 +99,7 @@ describe("postProcess, final natural 'o", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["round"],
+          annotations: ["plain"],
           digraph: false,
           groupType: "vowel",
           ipa: "",

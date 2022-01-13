@@ -1,6 +1,6 @@
-import { postProcess } from "../../../../src/Annotator/annotatingText";
-import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { rules, defaultRules } from "../../../../src/Types/Rules";
+import { postProcess } from "../../../../../src/Annotator/annotatingText";
+import { AnnotatedLetter } from "../../../../../src/Types/AnnotedLetter";
+import { rules, defaultRules } from "../../../../../src/Types/Rules";
 
 describe("postProcess, final silent e", () => {
   describe("rule used, make final e (d/s) not annotated if silent", () => {

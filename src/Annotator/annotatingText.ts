@@ -96,16 +96,16 @@ export function postProcess(
     }
   }
   if (rules.silentFinalEx && word.length > 1) {
-    const sencondFinalLetter: AnnotatedLetter = word[word.length - 2];
+    const secondFinalLetter: AnnotatedLetter = word[word.length - 2];
     const finalLetter: AnnotatedLetter = word[word.length - 1];
     if (
-      sencondFinalLetter.plainText === "e" &&
+      secondFinalLetter.plainText === "e" &&
       ["d", "s"].includes(finalLetter.plainText)
     ) {
-      if (sencondFinalLetter.annotations.length === 0) {
-        sencondFinalLetter.annotations = ["plain"];
-      } else if (sencondFinalLetter.annotations.includes("silent")) {
-        sencondFinalLetter.annotations = sencondFinalLetter.annotations.filter(
+      if (secondFinalLetter.annotations.length === 0) {
+        secondFinalLetter.annotations = ["plain"];
+      } else if (secondFinalLetter.annotations.includes("silent")) {
+        secondFinalLetter.annotations = secondFinalLetter.annotations.filter(
           (item) => {
             return item !== "silent";
           }
@@ -125,22 +125,22 @@ export function postProcess(
     }
   }
   if (rules.naturalFinalOx && word.length > 1) {
-    const sencondFinalLetter: AnnotatedLetter = word[word.length - 2];
+    const secondFinalLetter: AnnotatedLetter = word[word.length - 2];
     const finalLetter: AnnotatedLetter = word[word.length - 1];
     if (
-      sencondFinalLetter.plainText[0] === "o" &&
+      secondFinalLetter.plainText[0] === "o" &&
       finalLetter.plainText === "s"
     ) {
       if (
-        sencondFinalLetter.annotations.length === 1 &&
-        sencondFinalLetter.annotations[0] === "natural"
+        secondFinalLetter.annotations.length === 1 &&
+        secondFinalLetter.annotations[0] === "natural"
       ) {
-        sencondFinalLetter.annotations = [];
+        secondFinalLetter.annotations = [];
       }
     } else if (
       word.length > 2 &&
       word[word.length - 3].plainText === "o" &&
-      sencondFinalLetter.plainText === "e" &&
+      secondFinalLetter.plainText === "e" &&
       finalLetter.plainText === "s"
     ) {
       if (
@@ -205,6 +205,35 @@ export function postProcess(
         letter.annotations = [];
       }
     });
+  }
+  if (rules.defaultDigraphNG && word.length > 1) {
+    const secondFinalLetter: AnnotatedLetter = word[word.length - 2];
+    const finalLetter: AnnotatedLetter = word[word.length - 1];
+    if (
+      secondFinalLetter.plainText === "n" &&
+      secondFinalLetter.annotations.length === 1 &&
+      secondFinalLetter.annotations[0] === "common_change" &&
+      finalLetter.plainText === "g" &&
+      finalLetter.annotations.length === 1 &&
+      finalLetter.annotations[0] === "silent"
+    ) {
+      secondFinalLetter.annotations = [];
+      finalLetter.annotations = [];
+    } else if (word.length > 2) {
+      const thirdFinalLetter: AnnotatedLetter = word[word.length - 3];
+      if (
+        thirdFinalLetter.plainText === "n" &&
+        thirdFinalLetter.annotations.length === 1 &&
+        thirdFinalLetter.annotations[0] === "common_change" &&
+        secondFinalLetter.plainText === "g" &&
+        secondFinalLetter.annotations.length === 1 &&
+        secondFinalLetter.annotations[0] === "silent" &&
+        !["a", "e", "i", "o", "u", "l", "r"].includes(finalLetter.plainText)
+      ) {
+        thirdFinalLetter.annotations = [];
+        secondFinalLetter.annotations = [];
+      }
+    }
   }
   return word;
 }

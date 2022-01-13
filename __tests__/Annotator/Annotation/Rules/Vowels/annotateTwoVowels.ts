@@ -1,6 +1,6 @@
-import { postProcess } from "../../../../src/Annotator/annotatingText";
-import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { defaultRules, rules } from "../../../../src/Types/Rules";
+import { postProcess } from "../../../../../src/Annotator/annotatingText";
+import { AnnotatedLetter } from "../../../../../src/Types/AnnotedLetter";
+import { defaultRules, rules } from "../../../../../src/Types/Rules";
 
 describe("postProcess, annotateTwoVowels", () => {
   describe("rule used, make the second letter the same annotation if silent", () => {

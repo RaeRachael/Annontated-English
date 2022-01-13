@@ -1,16 +1,16 @@
-import { postProcess } from "../../../../src/Annotator/annotatingText";
-import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { rules, defaultRules } from "../../../../src/Types/Rules";
+import { postProcess } from "../../../../../src/Annotator/annotatingText";
+import { AnnotatedLetter } from "../../../../../src/Types/AnnotedLetter";
+import { rules, defaultRules } from "../../../../../src/Types/Rules";
 
-describe("postProcess, default vowel A", () => {
-  describe("rule used, make schwa 'a' unannotated", () => {
+describe("postProcess, final silent e", () => {
+  describe("rule used, make final e not annotated if silent", () => {
     let rules: rules = JSON.parse(JSON.stringify(defaultRules));
-    rules.defaultVowelA = true;
-    test("case to schwa 'a'", () => {
+    rules.silentFinalE = true;
+    test("case to silent final e", () => {
       let testWord: AnnotatedLetter[] = [
         {
-          plainText: "a",
-          annotations: ["schwa"],
+          plainText: "e",
+          annotations: ["silent"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -24,18 +24,18 @@ describe("postProcess, default vowel A", () => {
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "a",
+          plainText: "e",
         },
       ];
       let output = postProcess(testWord, rules);
       expect(output).toEqual(expectedOutput);
     });
 
-    test("case not schwa 'a'", () => {
+    test("add plain annotation if not silent", () => {
       let testWord: AnnotatedLetter[] = [
         {
-          plainText: "a",
-          annotations: ["plain"],
+          plainText: "e",
+          annotations: [],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -49,7 +49,7 @@ describe("postProcess, default vowel A", () => {
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "a",
+          plainText: "e",
         },
       ];
       let output = postProcess(testWord, rules);
@@ -59,12 +59,12 @@ describe("postProcess, default vowel A", () => {
 
   describe("rule not used, no edits", () => {
     let rules: rules = JSON.parse(JSON.stringify(defaultRules));
-    rules.defaultVowelA = false;
-    test("case to schwa 'a'", () => {
+    rules.silentFinalE = false;
+    test("case silent final e", () => {
       let testWord: AnnotatedLetter[] = [
         {
-          plainText: "a",
-          annotations: ["schwa"],
+          plainText: "e",
+          annotations: ["silent"],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -74,22 +74,22 @@ describe("postProcess, default vowel A", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["schwa"],
+          annotations: ["silent"],
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "a",
+          plainText: "e",
         },
       ];
       let output = postProcess(testWord, rules);
       expect(output).toEqual(expectedOutput);
     });
 
-    test("case not schwa 'a'", () => {
+    test("case final e not silent", () => {
       let testWord: AnnotatedLetter[] = [
         {
-          plainText: "a",
-          annotations: ["plain"],
+          plainText: "e",
+          annotations: [],
           annotatedString: "",
           ipa: "",
           digraph: false,
@@ -99,11 +99,11 @@ describe("postProcess, default vowel A", () => {
       let expectedOutput: AnnotatedLetter[] = [
         {
           annotatedString: "",
-          annotations: ["plain"],
+          annotations: [],
           digraph: false,
           groupType: "vowel",
           ipa: "",
-          plainText: "a",
+          plainText: "e",
         },
       ];
       let output = postProcess(testWord, rules);

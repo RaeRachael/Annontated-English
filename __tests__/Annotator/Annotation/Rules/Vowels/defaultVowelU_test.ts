@@ -1,6 +1,6 @@
-import { postProcess } from "../../../../src/Annotator/annotatingText";
-import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { rules, defaultRules } from "../../../../src/Types/Rules";
+import { postProcess } from "../../../../../src/Annotator/annotatingText";
+import { AnnotatedLetter } from "../../../../../src/Types/AnnotedLetter";
+import { rules, defaultRules } from "../../../../../src/Types/Rules";
 
 describe("postProcess, default vowel U", () => {
   describe("rule used, make schwa 'u' unannotated", () => {

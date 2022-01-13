@@ -1,6 +1,6 @@
-import { postProcess } from "../../../../src/Annotator/annotatingText";
-import { AnnotatedLetter } from "../../../../src/Types/AnnotedLetter";
-import { defaultRules, rules } from "../../../../src/Types/Rules";
+import { postProcess } from "../../../../../src/Annotator/annotatingText";
+import { AnnotatedLetter } from "../../../../../src/Types/AnnotedLetter";
+import { defaultRules, rules } from "../../../../../src/Types/Rules";
 
 describe("postProcess, default vowel I/Y", () => {
   describe("rule used, make plain 'i'/'y' unannotated", () => {
