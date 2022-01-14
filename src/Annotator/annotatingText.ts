@@ -235,5 +235,20 @@ export function postProcess(
       }
     }
   }
+  if (rules.defaultDigraphGH) {
+    for (var i = 0; i < word.length - 1; i++) {
+      if (
+        word[i].plainText === "g" &&
+        word[i].annotations.length === 1 &&
+        word[i].annotations[0] === "silent" &&
+        word[i + 1].plainText === "h" &&
+        word[i + 1].annotations.length === 1 &&
+        word[i + 1].annotations[0] === "silent"
+      ) {
+        word[i].annotations = [];
+        word[i + 1].annotations = [];
+      }
+    }
+  }
   return word;
 }

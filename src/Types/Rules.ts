@@ -10,6 +10,7 @@ export type rules = {
   defaultVowelO: boolean;
   defaultVowelU: boolean;
   defaultDigraphNG: boolean;
+  defaultDigraphGH: boolean;
 };
 
 export const defaultRules: rules = {
@@ -24,4 +25,5 @@ export const defaultRules: rules = {
   defaultVowelO: false,
   defaultVowelU: false,
   defaultDigraphNG: false,
+  defaultDigraphGH: false,
 };

@@ -81,6 +81,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 })
               }
@@ -102,6 +103,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 })
               }
@@ -125,6 +127,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 });
               }}
@@ -146,6 +149,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 })
               }
@@ -169,6 +173,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 });
               }}
@@ -190,6 +195,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: newValue,
                     defaultVowelU: newValue,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 });
                 this.setState({
@@ -214,6 +220,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 });
                 this.setState({
@@ -238,6 +245,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 });
                 this.setState({
@@ -262,6 +270,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 });
                 this.setState({
@@ -286,6 +295,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: newValue,
                     defaultVowelU: this.state.rules.defaultVowelU,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 });
                 this.setState({
@@ -310,6 +320,7 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: newValue,
                     defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
                   },
                 });
                 this.setState({
@@ -334,6 +345,32 @@ export default class AnnotationPage extends React.Component<
                     defaultVowelO: this.state.rules.defaultVowelO,
                     defaultVowelU: this.state.rules.defaultVowelO,
                     defaultDigraphNG: newValue,
+                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
+                  },
+                });
+                this.setState({
+                  defaultVowels: false,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default 'gh' as silent: "
+              checked={this.state.rules.defaultDigraphGH}
+              onChange={(newValue: boolean) => {
+                this.setState({
+                  rules: {
+                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
+                    silentFinalE: this.state.rules.silentFinalE,
+                    silentFinalEx: this.state.rules.silentFinalEx,
+                    naturalFinalO: this.state.rules.naturalFinalO,
+                    naturalFinalOx: this.state.rules.naturalFinalOx,
+                    defaultVowelA: this.state.rules.defaultVowelA,
+                    defaultVowelE: this.state.rules.defaultVowelE,
+                    defaultVowelYI: this.state.rules.defaultVowelYI,
+                    defaultVowelO: this.state.rules.defaultVowelO,
+                    defaultVowelU: this.state.rules.defaultVowelO,
+                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
+                    defaultDigraphGH: newValue,
                   },
                 });
                 this.setState({
