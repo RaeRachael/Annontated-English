@@ -7,27 +7,33 @@ export function AnnotatedCodeToAnnotatedText(
   word: AnnotatedLetter[],
   rules: rules = defaultRules
 ) {
+  // for (var i = 0; i < word.length - 1; i++) {
+  //   // console.log(word[i], i);
+  //   // if (
+  //   //   word[i].plainText === "" &&
+  //   //   // word[i].groupType === "consonant" &&
+  //   //   word[i].annotations.includes("w_semiconsonant") &&
+  //   //   word[i + 1].plainText === "w" &&
+  //   //   word[i + 1].annotations.length === 1 &&
+  //   //   word[i + 1].annotations[0] === "silent"
+  //   // ) {
+  //   //   console.log("remove unneded w_semiconst", i, word);
+  //   //   word[i + 1].annotations = [];
+  //   //   word[i + 1].groupType = "consonant";
+  //   // }
+  //   // if (
+  //   //   word[i].plainText === "y" &&
+  //   //   // word[i].groupType === "consonant" &&
+  //   //   word[i].annotations.includes("y_semiconsonant")
+  //   // ) {
+  //   //   word[i].annotations = [];
+  //   //   word[i].groupType = "consonant";
+  //   // }
+  // }
   // console.log(word, "preprocess");
   word = postProcess(word, rules);
   // console.log(word, "postprocess");
   for (var i = 0; i < word.length; i++) {
-    if (
-      word[i].plainText === "w" &&
-      // word[i].groupType === "consonant" &&
-      word[i].annotations.includes("w_semiconsonant")
-    ) {
-      // console.log("remove unneded w_semiconst", i, word);
-      word[i].annotations = [];
-      word[i].groupType = "consonant";
-    }
-    if (
-      word[i].plainText === "y" &&
-      // word[i].groupType === "consonant" &&
-      word[i].annotations.includes("y_semiconsonant")
-    ) {
-      word[i].annotations = [];
-      word[i].groupType = "consonant";
-    }
     getAnnotatedText(word[i]);
   }
 
@@ -152,22 +158,32 @@ export function postProcess(
     }
   }
   if (rules.defaultVowelA) {
-    word.forEach((letter) => {
+    word.forEach((letter, index) => {
       if (
         letter.plainText === "a" &&
         letter.annotations.length === 1 &&
-        letter.annotations[0] === "schwa"
+        letter.annotations[0] === "schwa" &&
+        (index === word.length - 1 ||
+          !(
+            word[index + 1].annotations.length === 0 &&
+            ["a", "e", "i", "u", "w", "y"].includes(word[index + 1].plainText)
+          ))
       ) {
         letter.annotations = [];
       }
     });
   }
   if (rules.defaultVowelE) {
-    word.forEach((letter) => {
+    word.forEach((letter, index) => {
       if (
         letter.plainText === "e" &&
         letter.annotations.length === 1 &&
-        letter.annotations[0] === "schwa"
+        letter.annotations[0] === "schwa" &&
+        (index === word.length - 1 ||
+          !(
+            word[index + 1].annotations.length === 0 &&
+            ["a", "e", "i", "u", "w", "y"].includes(word[index + 1].plainText)
+          ))
       ) {
         letter.annotations = [];
       }
@@ -185,11 +201,16 @@ export function postProcess(
     });
   }
   if (rules.defaultVowelO) {
-    word.forEach((letter) => {
+    word.forEach((letter, index) => {
       if (
         letter.plainText === "o" &&
         letter.annotations.length === 1 &&
-        letter.annotations[0] === "schwa"
+        letter.annotations[0] === "schwa" &&
+        (index === word.length - 1 ||
+          !(
+            word[index + 1].annotations.length === 0 &&
+            ["a", "i", "o", "u", "w", "y"].includes(word[index + 1].plainText)
+          ))
       ) {
         letter.annotations = [];
       }
@@ -247,6 +268,24 @@ export function postProcess(
       ) {
         word[i].annotations = [];
         word[i + 1].annotations = [];
+      }
+    }
+  }
+  if (rules.defaultDigraphWH) {
+    for (var i = 0; i < word.length - 1; i++) {
+      if (
+        word[i].plainText === "w" &&
+        word[i].annotations.length === 0 &&
+        word[i + 1].plainText === "h"
+      ) {
+        if (
+          word[i + 1].annotations.length === 1 &&
+          word[i + 1].annotations[0] === "silent"
+        ) {
+          word[i + 1].annotations = [];
+        } else if (word[i + 1].annotations.length === 0) {
+          word[i + 1].annotations = ["voiceless"];
+        }
       }
     }
   }

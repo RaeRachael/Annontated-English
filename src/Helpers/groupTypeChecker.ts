@@ -62,8 +62,13 @@ function wShouldBeVowel(position: number, segment: AnnotatedLetter[]): boolean {
   if (position === segment.length - 1) {
     return true;
   }
-  if (position !== segment.length - 1 && !isVowel(segment, position + 1)) {
-    return true;
+  if (position !== segment.length - 1) {
+    if (
+      !["w", "y"].includes(segment[position + 1].plainText) &&
+      !isVowel(segment, position + 1)
+    ) {
+      return true;
+    }
   }
   return false;
 }

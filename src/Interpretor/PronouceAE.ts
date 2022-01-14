@@ -74,9 +74,6 @@ export function indentifyWordSegments(
 export function addVowelAndConsonantMarkers(segment: AnnotatedLetter[]): void {
   for (var i = 0; i < segment.length; i++) {
     if (isVowel(segment, i)) {
-      // if (segment[i].plainText === "w") {
-      //   console.log(segment, "w is vowel....?");
-      // }
       segment[i].groupType = "vowel";
     } else {
       //if (isConsonant(segment, i)) {
@@ -125,9 +122,6 @@ export function getIPAForLetter(segment: AnnotatedLetter[]): void {
   for (var i = 0; i < segment.length; i++) {
     if (segment[i].groupType === "vowel") {
       getIPAForVowel(segment[i]);
-      // if (segment[i].plainText === "e") {
-      //   console.log(segment[i], "e - gre", getIPAForVowel(segment[i]));
-      // }
     } else if (segment[i].groupType === "consonant") {
       getIPAForConsonant(segment[i]);
     } else {

@@ -61,10 +61,10 @@ function buildAECodeForText(plainText: string): AnnotatedLetter[] {
       );
       i++;
       // console.log("vowel digraph", letters);
-    } else if (Object.keys(vowels).includes(plainText[i])) {
-      letters.push(makeAnnotatedLetter(plainText[i], [], false, "vowel"));
-    } else {
+    } else if (Object.keys(consonants).includes(plainText[i])) {
       letters.push(makeAnnotatedLetter(plainText[i], [], false, "consonant"));
+    } else {
+      letters.push(makeAnnotatedLetter(plainText[i], [], false, "vowel"));
     }
   }
   return letters;

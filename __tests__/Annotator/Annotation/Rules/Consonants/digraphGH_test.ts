@@ -2,7 +2,7 @@ import { postProcess } from "../../../../../src/Annotator/annotatingText";
 import { AnnotatedLetter } from "../../../../../src/Types/AnnotedLetter";
 import { rules, defaultRules } from "../../../../../src/Types/Rules";
 
-describe("postProcess, default ng digraph", () => {
+describe("postProcess, default gh digraph", () => {
   describe("rule used, make silent 'g'- silent 'h' unannotated ", () => {
     let rules: rules = JSON.parse(JSON.stringify(defaultRules));
     rules.defaultDigraphGH = true;

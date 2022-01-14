@@ -8,10 +8,10 @@ function getIPAForVowel(letter) {
     return;
   } else if (letter.annotations.includes("w_semiconsonant")) {
     letter.ipa = "w";
-    return "";
+    return;
   } else if (letter.annotations.includes("y_semiconsonant")) {
     letter.ipa = "j";
-    return "";
+    return;
   } else if (letter.annotations.includes("schwa")) {
     letter.ipa = "ə";
     // return;
@@ -42,6 +42,10 @@ function getIPAForVowel(letter) {
     if (!vowels[letterPlainText][ipaAnnotation]?.ipa) {
       // console.log("no ipa found for:", letter.plainText, ipaAnnotation);
       letter.ipa = "NO_IPA";
+      if (letter.plainText === "w" && letter.annotations.length === 0) {
+        //suspected consonant w
+        letter.ipa = "w";
+      }
       return "";
     }
 
@@ -99,10 +103,6 @@ function getIPAForConsonant(letter) {
   if (letter.annotations.includes("schwa")) {
     letter.ipa = "ə" + letter.ipa;
   }
-  // if (letter.plainText === "g") {
-  //   //(ipaAnnotation === "natural") {
-  //   console.log(letter.ipa, ipaAnnotation);
-  // }
 }
 
 function annotationForUnicode(number) {
