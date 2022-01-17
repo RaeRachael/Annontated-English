@@ -59,6 +59,7 @@ const processFunction: processRules = {
   defaultDigraphNG: processDefaultDigraphNG,
   defaultDigraphGH: processDefaultDigraphGH,
   defaultDigraphWH: processDefaultDigraphWH,
+  defaultDigraphWR: processDefaultDigraphWR,
 };
 
 function processAnnotateTwoVowels(word: AnnotatedLetter[]): void {
@@ -85,7 +86,7 @@ function processAnnotateTwoVowels(word: AnnotatedLetter[]): void {
 
 function processSilentFinalE(word: AnnotatedLetter[]): void {
   const finalLetter: AnnotatedLetter = word[word.length - 1];
-  if (finalLetter.plainText === "e") {
+  if (finalLetter.plainText.toLowerCase() === "e") {
     if (finalLetter.annotations.length === 0) {
       finalLetter.annotations = ["plain"];
     } else if (finalLetter.annotations.includes("silent")) {
@@ -101,8 +102,8 @@ function processSilentFinalEx(word: AnnotatedLetter[]): void {
     const secondFinalLetter: AnnotatedLetter = word[word.length - 2];
     const finalLetter: AnnotatedLetter = word[word.length - 1];
     if (
-      secondFinalLetter.plainText === "e" &&
-      ["d", "s"].includes(finalLetter.plainText)
+      secondFinalLetter.plainText.toLowerCase() === "e" &&
+      ["d", "s"].includes(finalLetter.plainText.toLowerCase())
     ) {
       if (secondFinalLetter.annotations.length === 0) {
         secondFinalLetter.annotations = ["plain"];
@@ -119,7 +120,7 @@ function processSilentFinalEx(word: AnnotatedLetter[]): void {
 
 function processNaturalFinalO(word: AnnotatedLetter[]): void {
   const finalLetter: AnnotatedLetter = word[word.length - 1];
-  if (finalLetter.plainText === "o") {
+  if (finalLetter.plainText.toLowerCase() === "o") {
     if (
       finalLetter.annotations.length === 1 &&
       finalLetter.annotations[0] === "natural"
@@ -134,8 +135,8 @@ function processNaturalFinalOx(word: AnnotatedLetter[]): void {
     const secondFinalLetter: AnnotatedLetter = word[word.length - 2];
     const finalLetter: AnnotatedLetter = word[word.length - 1];
     if (
-      secondFinalLetter.plainText[0] === "o" &&
-      finalLetter.plainText === "s"
+      secondFinalLetter.plainText[0].toLowerCase() === "o" &&
+      finalLetter.plainText.toLowerCase() === "s"
     ) {
       if (
         secondFinalLetter.annotations.length === 1 &&
@@ -145,9 +146,9 @@ function processNaturalFinalOx(word: AnnotatedLetter[]): void {
       }
     } else if (
       word.length > 2 &&
-      word[word.length - 3].plainText === "o" &&
-      secondFinalLetter.plainText === "e" &&
-      finalLetter.plainText === "s"
+      word[word.length - 3].plainText.toLowerCase() === "o" &&
+      secondFinalLetter.plainText.toLowerCase() === "e" &&
+      finalLetter.plainText.toLowerCase() === "s"
     ) {
       if (
         word[word.length - 3].annotations.length === 1 &&
@@ -162,7 +163,7 @@ function processNaturalFinalOx(word: AnnotatedLetter[]): void {
 function processDefaultVowelA(word: AnnotatedLetter[]): void {
   word.forEach((letter, index) => {
     if (
-      letter.plainText === "a" &&
+      letter.plainText.toLowerCase() === "a" &&
       letter.annotations.length === 1 &&
       letter.annotations[0] === "schwa" &&
       (index === word.length - 1 ||
@@ -179,7 +180,7 @@ function processDefaultVowelA(word: AnnotatedLetter[]): void {
 function processDefaultVowelE(word: AnnotatedLetter[]): void {
   word.forEach((letter, index) => {
     if (
-      letter.plainText === "e" &&
+      letter.plainText.toLowerCase() === "e" &&
       letter.annotations.length === 1 &&
       letter.annotations[0] === "schwa" &&
       (index === word.length - 1 ||
@@ -196,7 +197,7 @@ function processDefaultVowelE(word: AnnotatedLetter[]): void {
 function processDefaultVowelYI(word: AnnotatedLetter[]): void {
   word.forEach((letter) => {
     if (
-      ["y", "i"].includes(letter.plainText) &&
+      ["y", "i"].includes(letter.plainText.toLowerCase()) &&
       letter.annotations.length === 1 &&
       letter.annotations[0] === "plain"
     ) {
@@ -208,13 +209,15 @@ function processDefaultVowelYI(word: AnnotatedLetter[]): void {
 function processDefaultVowelO(word: AnnotatedLetter[]): void {
   word.forEach((letter, index) => {
     if (
-      letter.plainText === "o" &&
+      letter.plainText.toLowerCase() === "o" &&
       letter.annotations.length === 1 &&
       letter.annotations[0] === "schwa" &&
       (index === word.length - 1 ||
         !(
           word[index + 1].annotations.length === 0 &&
-          ["a", "i", "o", "u", "w", "y"].includes(word[index + 1].plainText)
+          ["a", "i", "o", "u", "w", "y"].includes(
+            word[index + 1].plainText.toLowerCase()
+          )
         ))
     ) {
       letter.annotations = [];
@@ -225,7 +228,7 @@ function processDefaultVowelO(word: AnnotatedLetter[]): void {
 function processDefaultVowelU(word: AnnotatedLetter[]): void {
   word.forEach((letter) => {
     if (
-      letter.plainText === "u" &&
+      letter.plainText.toLowerCase() === "u" &&
       letter.annotations.length === 1 &&
       letter.annotations[0] === "schwa"
     ) {
@@ -239,10 +242,10 @@ function processDefaultDigraphNG(word: AnnotatedLetter[]) {
     const secondFinalLetter: AnnotatedLetter = word[word.length - 2];
     const finalLetter: AnnotatedLetter = word[word.length - 1];
     if (
-      secondFinalLetter.plainText === "n" &&
+      secondFinalLetter.plainText.toLowerCase() === "n" &&
       secondFinalLetter.annotations.length === 1 &&
       secondFinalLetter.annotations[0] === "common_change" &&
-      finalLetter.plainText === "g" &&
+      finalLetter.plainText.toLowerCase() === "g" &&
       finalLetter.annotations.length === 1 &&
       finalLetter.annotations[0] === "silent"
     ) {
@@ -251,10 +254,10 @@ function processDefaultDigraphNG(word: AnnotatedLetter[]) {
     } else if (word.length > 2) {
       const thirdFinalLetter: AnnotatedLetter = word[word.length - 3];
       if (
-        thirdFinalLetter.plainText === "n" &&
+        thirdFinalLetter.plainText.toLowerCase() === "n" &&
         thirdFinalLetter.annotations.length === 1 &&
         thirdFinalLetter.annotations[0] === "common_change" &&
-        secondFinalLetter.plainText === "g" &&
+        secondFinalLetter.plainText.toLowerCase() === "g" &&
         secondFinalLetter.annotations.length === 1 &&
         secondFinalLetter.annotations[0] === "silent" &&
         !["a", "e", "i", "o", "u", "l", "r"].includes(finalLetter.plainText)
@@ -269,10 +272,10 @@ function processDefaultDigraphNG(word: AnnotatedLetter[]) {
 function processDefaultDigraphGH(word: AnnotatedLetter[]) {
   for (var i = 0; i < word.length - 1; i++) {
     if (
-      word[i].plainText === "g" &&
+      word[i].plainText.toLowerCase() === "g" &&
       word[i].annotations.length === 1 &&
       word[i].annotations[0] === "silent" &&
-      word[i + 1].plainText === "h" &&
+      word[i + 1].plainText.toLowerCase() === "h" &&
       word[i + 1].annotations.length === 1 &&
       word[i + 1].annotations[0] === "silent"
     ) {
@@ -285,9 +288,9 @@ function processDefaultDigraphGH(word: AnnotatedLetter[]) {
 function processDefaultDigraphWH(word: AnnotatedLetter[]) {
   for (var i = 0; i < word.length - 1; i++) {
     if (
-      word[i].plainText === "w" &&
+      word[i].plainText.toLowerCase() === "w" &&
       word[i].annotations.length === 0 &&
-      word[i + 1].plainText === "h"
+      word[i + 1].plainText.toLowerCase() === "h"
     ) {
       if (
         word[i + 1].annotations.length === 1 &&
@@ -296,6 +299,25 @@ function processDefaultDigraphWH(word: AnnotatedLetter[]) {
         word[i + 1].annotations = [];
       } else if (word[i + 1].annotations.length === 0) {
         word[i + 1].annotations = ["voiceless"];
+      }
+    }
+  }
+}
+
+function processDefaultDigraphWR(word: AnnotatedLetter[]) {
+  for (var i = 0; i < word.length - 1; i++) {
+    if (
+      word[i].plainText.toLowerCase() === "w" &&
+      word[i + 1].annotations.length === 0 &&
+      word[i + 1].plainText.toLowerCase() === "r"
+    ) {
+      if (
+        word[i].annotations.length === 1 &&
+        word[i].annotations[0] === "silent"
+      ) {
+        word[i].annotations = [];
+      } else if (word[i].annotations.length === 0) {
+        word[i].annotations = ["common_change"];
       }
     }
   }

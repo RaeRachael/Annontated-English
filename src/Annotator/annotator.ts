@@ -61,7 +61,7 @@ function buildAECodeForText(plainText: string): AnnotatedLetter[] {
       );
       i++;
       // console.log("vowel digraph", letters);
-    } else if (Object.keys(consonants).includes(plainText[i])) {
+    } else if (Object.keys(consonants).includes(plainText[i].toLowerCase())) {
       letters.push(makeAnnotatedLetter(plainText[i], [], false, "consonant"));
     } else {
       letters.push(makeAnnotatedLetter(plainText[i], [], false, "vowel"));
@@ -92,24 +92,24 @@ function mutateAsNeeded(
     let ipaAESection = getIPAForAE(lettersAE.slice(0, i + 1));
 
     if (ipaString.substring(0, ipaAESection.length) === ipaAESection) {
-      // console.log(
-      //   "index,",
-      //   i,
-      //   lettersAE[i].plainText,
-      //   ipaAESection,
-      //   ipaString.substring(0, ipaAESection.length),
-      //   "no mutation needed"
-      // );
+      console.log(
+        "index,",
+        i,
+        lettersAE[i].plainText,
+        ipaAESection,
+        ipaString.substring(0, ipaAESection.length),
+        "no mutation needed"
+      );
       i++;
     } else {
-      // console.log(
-      //   "index,",
-      //   i,
-      //   lettersAE[i].plainText,
-      //   ipaAESection,
-      //   ipaString.substring(0, ipaAESection.length),
-      //   "mutation needed"
-      // );
+      console.log(
+        "index,",
+        i,
+        lettersAE[i].plainText,
+        ipaAESection,
+        ipaString.substring(0, ipaAESection.length),
+        "mutation needed"
+      );
       const mutatedLetterObject = mutateLetter(lettersAE, i, ipaString);
       const mutatedLettersAE: AnnotatedLetter[] = [
         ...lettersAE.slice(0, i),

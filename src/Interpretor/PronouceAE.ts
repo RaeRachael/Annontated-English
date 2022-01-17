@@ -10,6 +10,7 @@ import { AnnotatedLetter } from "../Types/AnnotedLetter";
 export function getIPAForAE(wordIn: AnnotatedLetter[]): string {
   const ipaStrings: string[] = [];
   let word: AnnotatedLetter[] = JSON.parse(JSON.stringify(wordIn));
+  word.forEach((letter) => (letter.plainText = letter.plainText.toLowerCase()));
   removeSilentLetters(word);
   // console.log(word, wordIn);
   const wordSegments = indentifyWordSegments(word);

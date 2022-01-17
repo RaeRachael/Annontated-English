@@ -12,6 +12,7 @@ export type rules = {
   defaultDigraphNG: boolean;
   defaultDigraphGH: boolean;
   defaultDigraphWH: boolean;
+  defaultDigraphWR: boolean;
 };
 
 export const ruleList = [
@@ -28,6 +29,7 @@ export const ruleList = [
   "defaultDigraphNG",
   "defaultDigraphGH",
   "defaultDigraphWH",
+  "defaultDigraphWR",
 ];
 
 export const defaultRules: rules = {
@@ -44,21 +46,9 @@ export const defaultRules: rules = {
   defaultDigraphNG: false,
   defaultDigraphGH: false,
   defaultDigraphWH: false,
+  defaultDigraphWR: false,
 };
+
 export type processRules = {
   [key: string]: Function;
 };
-//   annotateTwoVowels: Function;
-//   silentFinalE: Function;
-//   silentFinalEx: Function;
-//   naturalFinalO: Function;
-//   naturalFinalOx: Function;
-//   defaultVowelA: Function;
-//   defaultVowelE: Function;
-//   defaultVowelYI: Function;
-//   defaultVowelO: Function;
-//   defaultVowelU: Function;
-//   defaultDigraphNG: Function;
-//   defaultDigraphGH: Function;
-//   defaultDigraphWH: Function;
-// };
