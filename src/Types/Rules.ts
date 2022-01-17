@@ -13,6 +13,7 @@ export type rules = {
   defaultDigraphGH: boolean;
   defaultDigraphWH: boolean;
   defaultDigraphWR: boolean;
+  defaultDigraphQU: boolean;
 };
 
 export const ruleList = [
@@ -30,6 +31,7 @@ export const ruleList = [
   "defaultDigraphGH",
   "defaultDigraphWH",
   "defaultDigraphWR",
+  "defaultDigraphQU",
 ];
 
 export const defaultRules: rules = {
@@ -47,6 +49,7 @@ export const defaultRules: rules = {
   defaultDigraphGH: false,
   defaultDigraphWH: false,
   defaultDigraphWR: false,
+  defaultDigraphQU: false,
 };
 
 export type processRules = {

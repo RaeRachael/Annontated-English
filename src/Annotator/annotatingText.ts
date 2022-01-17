@@ -60,6 +60,7 @@ const processFunction: processRules = {
   defaultDigraphGH: processDefaultDigraphGH,
   defaultDigraphWH: processDefaultDigraphWH,
   defaultDigraphWR: processDefaultDigraphWR,
+  defaultDigraphQU: processDefaultDigraphQU,
 };
 
 function processAnnotateTwoVowels(word: AnnotatedLetter[]): void {
@@ -319,6 +320,24 @@ function processDefaultDigraphWR(word: AnnotatedLetter[]) {
       } else if (word[i].annotations.length === 0) {
         word[i].annotations = ["common_change"];
       }
+    }
+  }
+}
+
+function processDefaultDigraphQU(word: AnnotatedLetter[]) {
+  for (var i = 0; i < word.length - 2; i++) {
+    if (
+      word[i].plainText.toLowerCase() === "q" &&
+      word[i].annotations.length === 0 &&
+      word[i + 1].plainText.toLowerCase() === "u" &&
+      word[i + 1].annotations.length === 1 &&
+      word[i + 1].annotations[0] === "w_semiconsonant" &&
+      ["a", "e", "i", "o", "u", "y"].includes(
+        word[i + 2].plainText[0].toLowerCase()
+      ) &&
+      !word[i + 2].annotations.includes("silent")
+    ) {
+      word[i + 1].annotations = [];
     }
   }
 }
