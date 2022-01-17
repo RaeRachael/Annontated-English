@@ -14,6 +14,22 @@ export type rules = {
   defaultDigraphWH: boolean;
 };
 
+export const ruleList = [
+  "annotateTwoVowels",
+  "silentFinalE",
+  "silentFinalEx",
+  "naturalFinalO",
+  "naturalFinalOx",
+  "defaultVowelA",
+  "defaultVowelE",
+  "defaultVowelYI",
+  "defaultVowelO",
+  "defaultVowelU",
+  "defaultDigraphNG",
+  "defaultDigraphGH",
+  "defaultDigraphWH",
+];
+
 export const defaultRules: rules = {
   annotateTwoVowels: false,
   silentFinalE: false,
@@ -29,3 +45,20 @@ export const defaultRules: rules = {
   defaultDigraphGH: false,
   defaultDigraphWH: false,
 };
+export type processRules = {
+  [key: string]: Function;
+};
+//   annotateTwoVowels: Function;
+//   silentFinalE: Function;
+//   silentFinalEx: Function;
+//   naturalFinalO: Function;
+//   naturalFinalOx: Function;
+//   defaultVowelA: Function;
+//   defaultVowelE: Function;
+//   defaultVowelYI: Function;
+//   defaultVowelO: Function;
+//   defaultVowelU: Function;
+//   defaultDigraphNG: Function;
+//   defaultDigraphGH: Function;
+//   defaultDigraphWH: Function;
+// };
