@@ -67,129 +67,66 @@ export default class AnnotationPage extends React.Component<
             <SwitchInput
               label="combine vowels when possible: "
               checked={this.state.rules.annotateTwoVowels}
-              onChange={(newValue: boolean) =>
+              onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.annotateTwoVowels = newValue;
+
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: newValue,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
-                })
-              }
+                  rules: rulesToSet,
+                });
+              }}
             ></SwitchInput>
             <SwitchInput
               label="default silent final 'e': "
               checked={this.state.rules.silentFinalE}
-              onChange={(newValue: boolean) =>
+              onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.silentFinalE = newValue;
+
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: newValue,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
-                })
-              }
+                  rules: rulesToSet,
+                });
+              }}
             ></SwitchInput>
             <SwitchInput
               label="default silent final 'e(d/s)': "
               checked={this.state.rules.silentFinalEx}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.silentFinalEx = newValue;
+                rulesToSet.silentFinalE = newValue
+                  ? true
+                  : this.state.rules.silentFinalE;
+
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: newValue
-                      ? true
-                      : this.state.rules.silentFinalE,
-                    silentFinalEx: newValue,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
               }}
             ></SwitchInput>
             <SwitchInput
               label="default natural final 'o': "
               checked={this.state.rules.naturalFinalO}
-              onChange={(newValue: boolean) =>
+              onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.naturalFinalO = newValue;
+
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: newValue,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
-                })
-              }
+                  rules: rulesToSet,
+                });
+              }}
             ></SwitchInput>
             <SwitchInput
               label="default natural final 'o(s/es)': "
               checked={this.state.rules.naturalFinalOx}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.naturalFinalOx = newValue;
+                rulesToSet.naturalFinalO = newValue
+                  ? true
+                  : this.state.rules.naturalFinalO;
+
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: newValue
-                      ? true
-                      : this.state.rules.naturalFinalO,
-                    naturalFinalOx: newValue,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
               }}
             ></SwitchInput>
@@ -197,24 +134,15 @@ export default class AnnotationPage extends React.Component<
               label="default vowels: "
               checked={this.state.defaultVowels}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultVowelA = newValue;
+                rulesToSet.defaultVowelE = newValue;
+                rulesToSet.defaultVowelYI = newValue;
+                rulesToSet.defaultVowelO = newValue;
+                rulesToSet.defaultVowelU = newValue;
+
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: newValue,
-                    defaultVowelE: newValue,
-                    defaultVowelYI: newValue,
-                    defaultVowelO: newValue,
-                    defaultVowelU: newValue,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
                 this.setState({
                   defaultVowels: newValue,
@@ -225,24 +153,10 @@ export default class AnnotationPage extends React.Component<
               label="default schwa 'a': "
               checked={this.state.rules.defaultVowelA}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultVowelA = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: newValue,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
                 this.setState({
                   defaultVowels: false,
@@ -253,24 +167,10 @@ export default class AnnotationPage extends React.Component<
               label="default schwa 'e': "
               checked={this.state.rules.defaultVowelE}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultVowelE = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: newValue,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
                 this.setState({
                   defaultVowels: false,
@@ -281,24 +181,10 @@ export default class AnnotationPage extends React.Component<
               label="default plain 'i/y': "
               checked={this.state.rules.defaultVowelYI}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultVowelYI = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: newValue,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
                 this.setState({
                   defaultVowels: false,
@@ -309,24 +195,10 @@ export default class AnnotationPage extends React.Component<
               label="default schwa 'o': "
               checked={this.state.rules.defaultVowelO}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultVowelO = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: newValue,
-                    defaultVowelU: this.state.rules.defaultVowelU,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
                 this.setState({
                   defaultVowels: false,
@@ -337,24 +209,10 @@ export default class AnnotationPage extends React.Component<
               label="default schwa 'u': "
               checked={this.state.rules.defaultVowelU}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultVowelU = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: newValue,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
                 this.setState({
                   defaultVowels: false,
@@ -365,24 +223,10 @@ export default class AnnotationPage extends React.Component<
               label="default 'ng' as common 'n': "
               checked={this.state.rules.defaultDigraphNG}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultDigraphNG = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelO,
-                    defaultDigraphNG: newValue,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
               }}
             ></SwitchInput>
@@ -390,24 +234,10 @@ export default class AnnotationPage extends React.Component<
               label="default 'gh' as silent: "
               checked={this.state.rules.defaultDigraphGH}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultDigraphGH = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelO,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: newValue,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
               }}
             ></SwitchInput>
@@ -415,24 +245,10 @@ export default class AnnotationPage extends React.Component<
               label="default 'wh' as 'w':"
               checked={this.state.rules.defaultDigraphWH}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultDigraphWH = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelO,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: newValue,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
               }}
             ></SwitchInput>
@@ -440,24 +256,10 @@ export default class AnnotationPage extends React.Component<
               label="default 'wr' as 'r':"
               checked={this.state.rules.defaultDigraphWR}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultDigraphWR = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelO,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: newValue,
-                    defaultDigraphQU: this.state.rules.defaultDigraphQU,
-                  },
+                  rules: rulesToSet,
                 });
               }}
             ></SwitchInput>
@@ -465,24 +267,21 @@ export default class AnnotationPage extends React.Component<
               label="default 'qu[vowel]' as 'kw[vowel]':"
               checked={this.state.rules.defaultDigraphQU}
               onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultDigraphQU = newValue;
                 this.setState({
-                  rules: {
-                    annotateTwoVowels: this.state.rules.annotateTwoVowels,
-                    silentFinalE: this.state.rules.silentFinalE,
-                    silentFinalEx: this.state.rules.silentFinalEx,
-                    naturalFinalO: this.state.rules.naturalFinalO,
-                    naturalFinalOx: this.state.rules.naturalFinalOx,
-                    defaultVowelA: this.state.rules.defaultVowelA,
-                    defaultVowelE: this.state.rules.defaultVowelE,
-                    defaultVowelYI: this.state.rules.defaultVowelYI,
-                    defaultVowelO: this.state.rules.defaultVowelO,
-                    defaultVowelU: this.state.rules.defaultVowelO,
-                    defaultDigraphNG: this.state.rules.defaultDigraphNG,
-                    defaultDigraphGH: this.state.rules.defaultDigraphGH,
-                    defaultDigraphWH: this.state.rules.defaultDigraphWH,
-                    defaultDigraphWR: this.state.rules.defaultDigraphWR,
-                    defaultDigraphQU: newValue,
-                  },
+                  rules: rulesToSet,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default 'gu[vowel]' as 'gw[vowel] / g[vowel]':"
+              checked={this.state.rules.defaultDigraphGU}
+              onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultDigraphGU = newValue;
+                this.setState({
+                  rules: rulesToSet,
                 });
               }}
             ></SwitchInput>

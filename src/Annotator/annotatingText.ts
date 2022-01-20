@@ -61,6 +61,7 @@ const processFunction: processRules = {
   defaultDigraphWH: processDefaultDigraphWH,
   defaultDigraphWR: processDefaultDigraphWR,
   defaultDigraphQU: processDefaultDigraphQU,
+  defaultDigraphGU: processDefaultDigraphGU,
 };
 
 function processAnnotateTwoVowels(word: AnnotatedLetter[]): void {
@@ -338,6 +339,32 @@ function processDefaultDigraphQU(word: AnnotatedLetter[]) {
       !word[i + 2].annotations.includes("silent")
     ) {
       word[i + 1].annotations = [];
+    }
+  }
+}
+
+function processDefaultDigraphGU(word: AnnotatedLetter[]) {
+  for (var i = 0; i < word.length - 2; i++) {
+    if (
+      word[i].plainText.toLowerCase() === "g" &&
+      word[i].annotations.length === 0 &&
+      word[i + 1].plainText.toLowerCase() === "u"
+    ) {
+      if (
+        word[i + 1].annotations.length === 1 &&
+        word[i + 1].annotations[0] === "w_semiconsonant" &&
+        ["a", "o", "u"].includes(word[i + 2].plainText[0].toLowerCase()) &&
+        !word[i + 2].annotations.includes("silent")
+      ) {
+        word[i + 1].annotations = [];
+      } else if (
+        word[i + 1].annotations.length === 1 &&
+        word[i + 1].annotations[0] === "silent" &&
+        ["e", "i", "y"].includes(word[i + 2].plainText[0].toLowerCase()) &&
+        !word[i + 2].annotations.includes("silent")
+      ) {
+        word[i + 1].annotations = [];
+      }
     }
   }
 }
