@@ -275,11 +275,22 @@ export default class AnnotationPage extends React.Component<
               }}
             ></SwitchInput>
             <SwitchInput
-              label="default 'gu[vowel]' as 'gw[vowel] / g[vowel]':"
+              label="default 'gu[vowel]' as 'gw[a/o/u] / g[e/i/y]':"
               checked={this.state.rules.defaultDigraphGU}
               onChange={(newValue: boolean) => {
                 let rulesToSet: rules = this.state.rules;
                 rulesToSet.defaultDigraphGU = newValue;
+                this.setState({
+                  rules: rulesToSet,
+                });
+              }}
+            ></SwitchInput>
+            <SwitchInput
+              label="default '[vowel]h' as '[vowel]' if not followed by vowel:"
+              checked={this.state.rules.defaultDigraphVowelH}
+              onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultDigraphVowelH = newValue;
                 this.setState({
                   rules: rulesToSet,
                 });

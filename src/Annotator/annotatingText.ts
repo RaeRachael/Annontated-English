@@ -62,6 +62,7 @@ const processFunction: processRules = {
   defaultDigraphWR: processDefaultDigraphWR,
   defaultDigraphQU: processDefaultDigraphQU,
   defaultDigraphGU: processDefaultDigraphGU,
+  defaultDigraphVowelH: processDefaultDigraphVowelH,
 };
 
 function processAnnotateTwoVowels(word: AnnotatedLetter[]): void {
@@ -364,6 +365,31 @@ function processDefaultDigraphGU(word: AnnotatedLetter[]) {
         !word[i + 2].annotations.includes("silent")
       ) {
         word[i + 1].annotations = [];
+      }
+    }
+  }
+}
+
+function processDefaultDigraphVowelH(word: AnnotatedLetter[]) {
+  for (var i = 0; i < word.length - 1; i++) {
+    if (
+      ["a", "e", "i", "o", "u", "w", "y"].includes(
+        word[i].plainText[0].toLowerCase()
+      ) &&
+      !word[i].annotations.includes("silent") &&
+      word[i + 1].plainText.toLowerCase() === "h" &&
+      (i === word.length - 2 ||
+        !["a", "e", "i", "o", "u", "w", "y"].includes(
+          word[i + 2].plainText.toLowerCase()
+        ))
+    ) {
+      if (
+        word[i + 1].annotations.length === 1 &&
+        word[i + 1].annotations[0] === "silent"
+      ) {
+        word[i + 1].annotations = [];
+      } else if (word[i + 1].annotations.length === 0) {
+        word[i + 1].annotations = ["voiceless"];
       }
     }
   }
