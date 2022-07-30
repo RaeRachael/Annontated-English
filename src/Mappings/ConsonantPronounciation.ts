@@ -141,10 +141,10 @@ export const consonants = {
     common_change: "f",
     voiceless: "p",
   },
-  gg: {
-    "": "g",
-  },
-  ss: {
-    "": "s",
-  },
+  // gg: {
+  //   "": "g",
+  // },
+  // ss: {
+  //   "": "s",
+  // },
 };

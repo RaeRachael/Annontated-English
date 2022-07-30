@@ -16,6 +16,12 @@ export type rules = {
   defaultDigraphQU: boolean;
   defaultDigraphGU: boolean;
   defaultDigraphVowelH: boolean;
+  // defaultDigraphTH: boolean (vowel / consonant after changes)
+  defaultSilentDoubleConsonants: boolean;
+  // defaultSchwaAdditions: boolean (fibre - in rhotic accents, drop it in final -m/n)
+  // defaultDiphthongJSound: boolean (for eu, ew digraphs)
+  // defaultStressedVowels: boolean
+  // defaultStressesForVowels: boolean
 };
 
 export const ruleList = [
@@ -36,6 +42,7 @@ export const ruleList = [
   "defaultDigraphQU",
   "defaultDigraphGU",
   "defaultDigraphVowelH",
+  "defaultSilentDoubleConsonants",
 ];
 
 export const defaultRules: rules = {
@@ -56,6 +63,7 @@ export const defaultRules: rules = {
   defaultDigraphQU: false,
   defaultDigraphGU: false,
   defaultDigraphVowelH: false,
+  defaultSilentDoubleConsonants: false,
 };
 
 export type processRules = {

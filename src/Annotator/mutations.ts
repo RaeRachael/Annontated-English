@@ -94,7 +94,7 @@ export function mutateLetter(
     }
   }
   console.log(
-    "faield to find a correct mutation",
+    "failed to find a correct mutation",
     // index,
     lettersAE[index]
     // lettersAE,
@@ -211,7 +211,7 @@ function splitDigraphWithSeperator(
   let splitTestAE = splitDigraphLettersSeparator(lettersAE, index);
 
   let ipaAESection = getIPAForAE(splitTestAE.slice(0, index + 1));
-
+  // console.log(splitTestAE, ipaAESection, "split test");
   if (matchingIPASoFar(targetIPA, ipaAESection)) {
     return {
       letters: splitTestAE.slice(index, index + 3),

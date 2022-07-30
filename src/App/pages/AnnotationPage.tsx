@@ -296,6 +296,17 @@ export default class AnnotationPage extends React.Component<
                 });
               }}
             ></SwitchInput>
+            <SwitchInput
+              label="default double consonants as silent:"
+              checked={this.state.rules.defaultSilentDoubleConsonants}
+              onChange={(newValue: boolean) => {
+                let rulesToSet: rules = this.state.rules;
+                rulesToSet.defaultSilentDoubleConsonants = newValue;
+                this.setState({
+                  rules: rulesToSet,
+                });
+              }}
+            ></SwitchInput>
           </div>
           <div>
             <input type="submit" value="Annotate" />

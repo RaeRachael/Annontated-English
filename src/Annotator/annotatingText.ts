@@ -63,6 +63,7 @@ const processFunction: processRules = {
   defaultDigraphQU: processDefaultDigraphQU,
   defaultDigraphGU: processDefaultDigraphGU,
   defaultDigraphVowelH: processDefaultDigraphVowelH,
+  defaultSilentDoubleConsonants: processDefaultSilentDoubleConsonants,
 };
 
 function processAnnotateTwoVowels(word: AnnotatedLetter[]): void {
@@ -391,6 +392,29 @@ function processDefaultDigraphVowelH(word: AnnotatedLetter[]) {
       } else if (word[i + 1].annotations.length === 0) {
         word[i + 1].annotations = ["voiceless"];
       }
+    }
+  }
+}
+
+function processDefaultSilentDoubleConsonants(word: AnnotatedLetter[]) {
+  for (var i = 0; i < word.length - 1; i++) {
+    if (
+      word[i].groupType === "consonant" &&
+      word[i].plainText === word[i + 1].plainText &&
+      word[i + 1].annotations[0] === "silent"
+    ) {
+      word[i + 1].annotations = [];
+    } else if (
+      word[i].groupType === "consonant" &&
+      word[i].plainText === word[i + 1].plainText &&
+      word[i + 1].annotations.length === 0
+    ) {
+      console.log("ioierngoe");
+      word.splice(
+        i + 1,
+        0,
+        makeAnnotatedLetter("", ["simple_seperator"], false, "undetermined")
+      );
     }
   }
 }
