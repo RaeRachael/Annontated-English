@@ -119,15 +119,15 @@ function mutateAsNeeded(
           lettersAE.length
         ),
       ];
-      console.log(
-        "post mutation",
-        mutatedLetterObject,
-        mutatedLettersAE,
-        lettersAE,
-        i,
-        lettersAE.length
-      );
-      console.log(mutatedLettersAE, "post mutation");
+      // console.log(
+      //   "post mutation",
+      //   mutatedLetterObject,
+      //   mutatedLettersAE,
+      //   lettersAE,
+      //   i,
+      //   lettersAE.length
+      // );
+      // console.log(mutatedLettersAE, "post mutation");
       lettersAE = mutatedLettersAE;
       i += mutatedLetterObject.numberMutated;
       // console.log(lettersAE, i, "next to check");

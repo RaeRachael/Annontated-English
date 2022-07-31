@@ -34,6 +34,7 @@ export const digraphs = {
     "pt",
     "th",
     "gh",
+    "sh",
     // "gg",
     // "ss",
   ],
