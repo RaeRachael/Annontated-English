@@ -12,7 +12,7 @@
 
 ### Current State
 
-There is a simple annotator [webapp deployed](https://annotated-english.herokuapp.com/) which only using a single accent, limited ipa pronounciation lookup dictionary and has very limited set of common rules, which would reduce the number of needed annotations.
+There is a simple annotator [webapp deployed](https://annotated-english.surge.sh/) which only using a single accent, limited ipa pronounciation lookup dictionary and has very limited set of common rules, which would reduce the number of needed annotations.
 The output from the webapp should be usable on most text editors (ones that do not like zero width spaces will make the annotated words look a little strange - like vscode), including word and it should be fine to change the font as well (some fonts won't have support for all annotation marks)
 
 ### Examples of annotations
