@@ -34,14 +34,12 @@ sounds are annotated (when needed) with marks above the letter
 | Idiphthong      | à                | /aɪ/              | A diphthongending ending a ɪ. |
 | Udiphthong      | á                | /aʊ/              | A diphthongending ending a ʊ. |
 | Schwa           | ə̇                | /ə/               | Fixed - this annotation is always /ə/ |
-|
+
+#### Stress
+
+| Annotation Type | Example Annotation | IPA Pronunciation | Description (not perfect but useful) |
 | Stressed        | e̩̓              | /iː/              | Indicates primary stress on the vowel. |
 | Unstressed      | e̩̓              | /ɪə/              | Indicates secondary or reduced stress. |
-
-stress is indacted by dashes below the vowel
-
-- e̩̓ - main stress
-- o͈̓ - secondary stress
 
 #### Consonants
 
