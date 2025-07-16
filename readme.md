@@ -21,10 +21,22 @@ The output from the webapp should be usable on most text editors (ones that do n
 
 sounds are annotated (when needed) with marks above the letter
 
-(not a full list)
-
-- ã - /eɪ/ - natural
-- a̓ - /æ/ - plain
+| Annotation Type | Example Annotation | IPA Pronunciation | Description (not perfect but useful) |
+|-----------------|--------------------|-------------------|-------------------|
+| Natural         | ã                | /eɪ/              | Most common pronunciation for the vowel. |
+| Plain           | a̓                | /æ/               | Second most common pronunciation. |
+| Broad           | ā                | /ɑː/              | elongated vowel sound ish |
+| Clear           | â                | /ʌ/               |
+| Central         | ä                | /ɛ/               | central vowel sound ish |
+| Iotted          | ȧ                | /ɪ/               | Moved towards /ɪ/ |
+| Round           | å                | /ɔː/              | Rounded vowel sound. |
+| Opaque          | ǎ                | /ɒ/               |
+| Idiphthong      | à                | /aɪ/              | A diphthongending ending a ɪ. |
+| Udiphthong      | á                | /aʊ/              | A diphthongending ending a ʊ. |
+| Schwa           | ə̇                | /ə/               | Fixed - this annotation is always /ə/ |
+|
+| Stressed        | e̩̓              | /iː/              | Indicates primary stress on the vowel. |
+| Unstressed      | e̩̓              | /ɪə/              | Indicates secondary or reduced stress. |
 
 stress is indacted by dashes below the vowel
 
@@ -35,13 +47,15 @@ stress is indacted by dashes below the vowel
 
 sounds are annotated (when needed) with marks below the letter
 
-- c̥ - /k/ - common_change
-- s̬ - /z/ - voiced
-- c̭ - /s/ - voiceless
-- g̺ - /ʒ/ - soft_voiced
-- c̪ - /ʃ/ - soft_voiceless
-- g̺̱ - /dʒ/ - hard_voiced
-- c̪̱ - /tʃ/ - hard_voiceless
+| Annotation | IPA Pronunciation | Description       |
+|------------|-------------------|-------------------|
+| c̥         | /k/               | Common change     |
+| s̬         | /z/               | Voiced            |
+| c̭         | /s/               | Voiceless         |
+| g̺         | /ʒ/               | Soft voiced       |
+| c̪         | /ʃ/               | Soft voiceless    |
+| g̺̱        | /dʒ/              | Hard voiced       |
+| c̪̱        | /tʃ/              | Hard voiceless    |
 
 ### Planned Extentions
 
