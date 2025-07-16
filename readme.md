@@ -38,6 +38,7 @@ sounds are annotated (when needed) with marks above the letter
 #### Stress
 
 | Annotation Type | Example Annotation | IPA Pronunciation | Description (not perfect but useful) |
+|-----------------|--------------------|-------------------|-------------------|
 | Stressed        | e̩̓              | /iː/              | Indicates primary stress on the vowel. |
 | Unstressed      | e̩̓              | /ɪə/              | Indicates secondary or reduced stress. |
 
